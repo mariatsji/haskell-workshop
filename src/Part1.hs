@@ -1,4 +1,4 @@
-module Part1 (count) where
+module Part1 (count, sum) where
 
 import          Prelude hiding (count, sum)
 import          Numeric.Natural
