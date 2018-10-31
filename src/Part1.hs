@@ -1,4 +1,4 @@
-module Part1 (helloWorld, add, count, sum) where
+module Part1 (helloWorld, add, count, sum, apply, applys) where
 
 import          Prelude hiding (count, sum)
 import          Numeric.Natural
@@ -21,3 +21,12 @@ count (x:xs) = succ . count $ xs
 sum :: [Int] -> Int
 sum [] = 0
 sum (x:xs) = x + sum xs
+
+-- apply a function given as an argument
+apply :: (a -> b) -> a -> b
+apply f a = f a
+
+-- apply a function to a list of arguments
+applys :: (a -> b) -> [a] -> [b]
+applys f [] = []
+applys f (x:xs) = f x : applys f xs

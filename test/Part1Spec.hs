@@ -45,6 +45,8 @@ unit = H.testSpec "count (unit tests)" $ do
     addNrSpec
     countSpec
     sumSpec
+    applySpec
+    applysSpec
 
 helloWorldSpec :: Spec
 helloWorldSpec = describe "helloWorld" $ do
@@ -71,3 +73,21 @@ sumSpec = describe "sum" $ do
     sum [] `shouldBe` 0
   it "sums [-5,2,13] to 10" $ do
     sum [-5,2,13] `shouldBe` 10
+
+applySpec :: Spec
+applySpec = describe "apply" $ do
+  it "applies the identity function with no apparent result to the number 15" $ do
+    apply id 15 `shouldBe` 15
+  it "applies the succ function to 17 to find 18" $ do
+    apply succ 17 `shouldBe` 18
+  it "applies the length function to the String \"catnip\" to find 6" $ do
+    apply length "catnip" `shouldBe` 6
+
+applysSpec :: Spec
+applysSpec = describe "applys" $ do
+  it "applies some function to the empty list returning the empty list" $ do
+    applys length ([] :: [String]) `shouldBe` []
+  it "applies the identity function with no apprent result to the numbers [5,1,-2]" $ do
+    applys id [5,1,-2] `shouldBe` [5,1,-2]
+  it "spplies the length function on [\"catnip\", \"catfood\"] to find [6,7]" $ do
+    applys length ["catnip", "catfood"] `shouldBe` ([6,7] :: [Int])
