@@ -38,7 +38,7 @@ executables:
 
 tests:
   haskell-workshop-test:
-    main:                Spec.hs
+    main:                Part1Spec.hs
     source-dirs:         test
     ghc-options:
     - -threaded
@@ -46,3 +46,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - haskell-workshop
+    - tasty
+    - tasty-quickcheck
+    - tasty-hspec
+    - hspec
