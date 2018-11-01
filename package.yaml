@@ -35,6 +35,8 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - haskell-workshop
+    - time
+    - async
 
 tests:
   haskell-workshop-test:
