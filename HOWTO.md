@@ -1,5 +1,7 @@
 # Run the slides
 
-	`stack install patat`
-	`patat -w presentation/haskell.md`
+get iTerm2 (required because we display images within a terminal)
+
+	stack install patat
+	patat -w presentation/haskell.md
 
