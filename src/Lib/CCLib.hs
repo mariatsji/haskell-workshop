@@ -1,6 +1,9 @@
-module Lib.CCLib (validate) where
+module Lib.CCLib
+    ( validate
+    )
+where
 
-import qualified Lib.CreditCard as CC
+import qualified Lib.CreditCard                as CC
 
 validate :: Integer -> Bool
 validate = CC.validate

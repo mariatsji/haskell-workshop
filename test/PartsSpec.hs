@@ -1,12 +1,13 @@
 import           Test.Hspec
 import           Test.Tasty
-import           Test.Tasty.Hspec      as H
-import           Test.Tasty.QuickCheck as QC
+import           Test.Tasty.Hspec              as H
+import           Test.Tasty.QuickCheck         as QC
 
 import           Numeric.Natural
 import           Part1
 import           Part2
-import           Prelude               hiding (sum)
+import           Part3
+import           Prelude                           hiding ( sum )
 
 main = do
   unitTree <- unit
@@ -38,82 +39,110 @@ greetString s = length (helloWorld s) > length s
 
 -- Unit Tests
 unit :: IO TestTree
-unit =
-  H.testSpec "count (unit tests)" $ do
-    helloWorldSpec
-    addNrSpec
-    countSpec
-    sumSpec
-    applySpec
-    applysSpec
-    bitSpec
-    refactorSpec
+unit = H.testSpec "count (unit tests)" $ do
+  helloWorldSpec
+  addNrSpec
+  countSpec
+  sumSpec
+  applySpec
+  applysSpec
+  bitSpec
+  refactorSpec
+  takeSpec
+  dropSpec
+  compressorSpec
 
 helloWorldSpec :: Spec
-helloWorldSpec =
-  describe "helloWorld" $ do
-    it "greets Anders" $ do helloWorld "Anders" `shouldBe` "Hello, Anders!"
+helloWorldSpec = describe "helloWorld" $ do
+  it "greets Anders" $ do
+    helloWorld "Anders" `shouldBe` "Hello, Anders!"
 
 addNrSpec :: Spec
-addNrSpec =
-  describe "add" $ do
-    it "adds 3 and -3 to 0" $ do add 3 (-3) `shouldBe` 0
-    it "adds 17 and 13 to 30" $ do add 17 13 `shouldBe` 30
+addNrSpec = describe "add" $ do
+  it "adds 3 and -3 to 0" $ do
+    add 3 (-3) `shouldBe` 0
+  it "adds 17 and 13 to 30" $ do
+    add 17 13 `shouldBe` 30
 
 isSevenSpec :: Spec
-isSevenSpec =
-  describe "isSeven" $ do
-    it "checks that a number is 7 using 0" $ do isSeven 0 `shouldBe` False
-    it "checks that a number is 7 using 7" $ do isSeven 7 `shouldBe` True
+isSevenSpec = describe "isSeven" $ do
+  it "checks that a number is 7 using 0" $ do
+    isSeven 0 `shouldBe` False
+  it "checks that a number is 7 using 7" $ do
+    isSeven 7 `shouldBe` True
 
 countSpec :: Spec
-countSpec =
-  describe "count" $ do
-    it "counts the length of [] to 0" $ do count [] `shouldBe` 0
-    it "counts the length of [2,5,2,3,6,3,4] to 7" $ do
-      count [2, 5, 2, 3, 6, 3, 4] `shouldBe` 7
+countSpec = describe "count" $ do
+  it "counts the length of [] to 0" $ do
+    count [] `shouldBe` 0
+  it "counts the length of [2,5,2,3,6,3,4] to 7" $ do
+    count [2, 5, 2, 3, 6, 3, 4] `shouldBe` 7
 
 sumSpec :: Spec
-sumSpec =
-  describe "sum" $ do
-    it "sums [] to 0" $ do sum [] `shouldBe` 0
-    it "sums [-5,2,13] to 10" $ do sum [-5, 2, 13] `shouldBe` 10
+sumSpec = describe "sum" $ do
+  it "sums [] to 0" $ do
+    sum [] `shouldBe` 0
+  it "sums [-5,2,13] to 10" $ do
+    sum [-5, 2, 13] `shouldBe` 10
 
 applySpec :: Spec
-applySpec =
-  describe "apply" $ do
-    it "applies the identity function with no apparent result to the number 15" $ do
-      apply id 15 `shouldBe` 15
-    it "applies the succ function to 17 to find 18" $ do
-      apply succ 17 `shouldBe` 18
-    it "applies the length function to the String \"catnip\" to find 6" $ do
-      apply length "catnip" `shouldBe` 6
+applySpec = describe "apply" $ do
+  it "applies the identity function with no apparent result to the number 15"
+    $ do
+        apply id 15 `shouldBe` 15
+  it "applies the succ function to 17 to find 18" $ do
+    apply succ 17 `shouldBe` 18
+  it "applies the length function to the String \"catnip\" to find 6" $ do
+    apply length "catnip" `shouldBe` 6
 
 applysSpec :: Spec
-applysSpec =
-  describe "applys" $ do
-    it "applies some function to the empty list returning the empty list" $ do
-      applys length ([] :: [String]) `shouldBe` []
-    it
-      "applies the identity function with no apprent result to the numbers [5,1,-2]" $ do
-      applys id [5, 1, -2] `shouldBe` [5, 1, -2]
-    it "spplies the length function on [\"catnip\", \"catfood\"] to find [6,7]" $ do
-      applys length ["catnip", "catfood"] `shouldBe` ([6, 7] :: [Int])
+applysSpec = describe "applys" $ do
+  it "applies some function to the empty list returning the empty list" $ do
+    applys length ([] :: [String]) `shouldBe` []
+  it
+      "applies the identity function with no apprent result to the numbers [5,1,-2]"
+    $ do
+        applys id [5, 1, -2] `shouldBe` [5, 1, -2]
+  it "spplies the length function on [\"catnip\", \"catfood\"] to find [6,7]"
+    $ do
+        applys length ["catnip", "catfood"] `shouldBe` ([6, 7] :: [Int])
 
 bitSpec :: Spec
-bitSpec =
-  describe "bit datatype" $ do
-    it "represents the zero bit" $ do
-      prettyPrint Zero `shouldBe` '0'
-    it "represents the one bit" $ do
-      prettyPrint One `shouldBe` '1'
-        
+bitSpec = describe "bit datatype" $ do
+  it "represents the zero bit" $ do
+    prettyPrint Zero `shouldBe` '0'
+  it "represents the one bit" $ do
+    prettyPrint One `shouldBe` '1'
+
 refactorSpec :: Spec
-refactorSpec =
-  describe "Part2" $ do
-    it "refactors credit card lib bump invalid card" $ do
-      let (ResponseData _ price) = checkoutItems [Atari2600] 4012888888881882
-      price `shouldBe` Nothing
-    it "refactors credit card lib bump valid card" $ do
-      let (ResponseData _ price) = checkoutItems [Sega8Bit, Comodore64] 4012888888881881
-      price `shouldBe` (Just 1100)
+refactorSpec = describe "Part2 - refactor" $ do
+  it "refactors credit card lib bump invalid card" $ do
+    let (ResponseData _ price) = checkoutItems [Atari2600] 4012888888881882
+    price `shouldBe` Nothing
+  it "refactors credit card lib bump valid card" $ do
+    let (ResponseData _ price) =
+          checkoutItems [Sega8Bit, Comodore64] 4012888888881881
+    price `shouldBe` (Just 1100)
+
+takeSpec :: Spec
+takeSpec = describe "Part3 - takeUntil" $ do
+  it "takes until a predicate becomes false for (<3) [1,2,3,4,5] " $ do
+    takeUntil (<3) [1 .. 5] `shouldBe` [1,2]
+  it "takes nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
+    takeUntil (>3) [1 .. 5] `shouldBe` []
+
+dropSpec :: Spec
+dropSpec = describe "Part3 - dropUntil" $ do
+  it "drops until a predicate becomes false for (<3) [1,2,3,4,5]" $ do
+    dropUntil (<3) [1 .. 5] `shouldBe` [3,4,5]
+  it "drops nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
+    dropUntil (>3) [1 .. 5] `shouldBe` [1 .. 5]
+
+compressorSpec :: Spec
+compressorSpec = describe "Part3 - compress String" $ do
+  it "compresses an empty string to the same empty string" $ do
+    compressString "" `shouldBe` ""
+  it "compresses a string untouched when no streaks \"abc\" -> \"abc\"" $ do
+    compressString "abc" `shouldBe` "abc"
+  it "compresses a string when there is a streak \"xyyyyzz\" -> \"x4y2z\"" $ do
+    compressString "xyyyyzz" `shouldBe` "x4y2z"

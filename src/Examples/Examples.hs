@@ -34,3 +34,11 @@ fahrToCelcius f =
   let fOrigin        = f - 32 -- what you list here becomes available from this point on inside the function
       originFactored = fOrigin * 5 / 9
   in  originFactored -- what you type here gets returned
+
+-- recursion on list example
+makeXbig :: String -> String -- String is the same as [Char] in haskell
+makeXbig []       = [] -- we reflect the empty list
+makeXbig (x : xs) = -- here, x is a char (the head) and xs is a list (the tail)
+                    if x == 'x'
+  then 'X' : makeXbig xs -- : means append a list to a single value
+  else x : makeXbig xs
