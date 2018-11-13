@@ -2,9 +2,9 @@
 title: Haskell Workshop
 author: FINN.no
 patat:
-    wrap: true
+    wrap: false
     margins:
-        left: 10
+        left: 5
         right: 10
     incrementalLists: true
     images:
@@ -24,6 +24,44 @@ patat:
 * Mystic \*
 
 \* has monads
+
+
+# 
+
+
+![](functions.png)
+
+
+# 
+
+
+![](functions2.png)
+
+
+# In haskell
+
+```haskell
+f :: a -> b
+
+g :: c -> d
+
+g . f
+```
+
+
+# Wire input to output
+
+```haskell
+isPrime :: Natural-> Bool
+isPrime 0 = False
+isPrime 1 = False
+isPrime 2 = True
+isPrime 3 = True
+isPrime 4 = False
+isPrime 5 = True
+isPrime 6 = False
+isPrime 7 = True
+```
 
 
 #

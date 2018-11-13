@@ -1,8 +1,10 @@
-module Lib.CCLib2(validate) where
+module Lib.CCLib2(validate, Validation(..)) where
 
 import qualified Lib.CreditCard as CC
 
-validate :: Integer -> Maybe Integer
+data Validation = Good | Bad
+
+validate :: Integer -> Validation
 validate i = case CC.validate i of
-    False -> Nothing
-    True -> Just i
+    False -> Bad
+    True -> Good
