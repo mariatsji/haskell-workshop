@@ -12,9 +12,7 @@ module Part1
 where
 
 import           Numeric.Natural
-import           Prelude                           hiding ( count
-                                                          , sum
-                                                          )
+import           Prelude                           hiding ( sum )
 
 -- given a name (String) as input should create a personalized greeting
 -- e.g. `helloworld "Jens"` -> "Hello, Jens!"
