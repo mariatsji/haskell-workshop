@@ -30,7 +30,7 @@
 
 Edit the code in `src/Part1.hs` and type 
 
-    `stack test`
+    stack test
 
 until Part 1 is green!
 
@@ -38,7 +38,7 @@ until Part 1 is green!
 
 Edit the code in `src/Part2.hs` and type
 
-    `stack test`
+    stack test
     
 until Part 2 is green!
 
@@ -47,11 +47,12 @@ until Part 2 is green!
 See if you are able to use a built in function called `concurrently` to speed up the execution!
 Test your solution on linux/osx with 
     
-    `stack build && time stack exec haskell-workshop`
+    stack build && time stack exec haskell-workshop
     
 or on Windows /w power-shell :
     
-    `stack build` and `Measure-Command {start-process stack exec haskell-workshop -Wait}`
+    stack build
+    Measure-Command {start-process stack exec haskell-workshop -Wait}
         
     
     
