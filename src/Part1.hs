@@ -6,6 +6,8 @@ module Part1
   , sum
   , apply
   , applys
+  , Bit(..)
+  , prettyPrint
   ) where
 
 import           Numeric.Natural
@@ -45,3 +47,16 @@ apply f a = f a
 applys :: (a -> b) -> [a] -> [b]
 applys f []     = []
 applys f (x:xs) = f x : applys f xs
+
+-- below is the existing definition of a Bit
+-- .. but you have just discovered quantum computing!
+-- So you should therefore expand the type with a new data constructor : SuperPosition
+-- Make this change in the data definition below : 
+data Bit = Zero | One | SuperPosition
+
+-- what should the new SuperPosition case look like? You decide!
+prettyPrint :: Bit -> Char
+prettyPrint Zero = '0' 
+prettyPrint One = '1'
+prettyPrint SuperPosition = '*'
+

@@ -1,17 +1,40 @@
-## Hello world
+---
+title: Haskell Workshop
+author: FINN.no
+patat:
+    wrap: true
+    margins:
+        left: 10
+        right: 10
+    incrementalLists: true
+    images:
+        backend: auto
+...
 
-- This
-- Is
-- Cool
+# 
+
+![](haskell-workshop.png)
+
+# Haskell
+
+* Haskell / GHC
+* Purely functional
+* No side-effects
+* Lazy
+* Mystic \*
+
+\* has monads
 
 
+#
+
+![](FP-IMP.png)
 
 
-## Another slide here
+# Wat?
 
-With some info
+```haskell
+validate :: Integer -> Bool
+validate = isZeroRem10 . sumDigits . doubleEveryOther . toDigits
+```
 
-
-## And lastly
-
-Some important last words

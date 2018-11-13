@@ -1,6 +1,6 @@
 module Examples where
 
-import           Numeric.Natural
+import           Numeric.Natural -- natural numbers (0,1,2 .. )
 
 -- This function takes a list of Char as argument, and give a Natural number back (the length)
 myFunction :: [Char] -> Natural -- this is the type signature of the function

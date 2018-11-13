@@ -45,6 +45,7 @@ unit =
     sumSpec
     applySpec
     applysSpec
+    bitSpec
 
 helloWorldSpec :: Spec
 helloWorldSpec =
@@ -96,3 +97,12 @@ applysSpec =
       applys id [5, 1, -2] `shouldBe` [5, 1, -2]
     it "spplies the length function on [\"catnip\", \"catfood\"] to find [6,7]" $ do
       applys length ["catnip", "catfood"] `shouldBe` ([6, 7] :: [Int])
+
+bitSpec :: Spec
+bitSpec =
+  describe "bit datatype" $ do
+    it "represents the zero bit" $ do
+      prettyPrint Zero `shouldBe` '0'
+    it "represents the one bit" $ do
+      prettyPrint One `shouldBe` '1'
+        
