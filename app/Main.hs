@@ -1,7 +1,7 @@
 module Main where
 
-import           Control.Concurrent       (threadDelay)
-import           Control.Concurrent.Async (concurrently)
+import           Control.Concurrent                       ( threadDelay )
+import           Control.Concurrent.Async                 ( concurrently )
 import           Data.Time.Clock
 
 data SlowService
@@ -25,7 +25,7 @@ main = do
 
 doQuery :: IO (ServiceData, ServiceData)
 doQuery = do
-  ad <- querySlowService AdLookup
+  ad  <- querySlowService AdLookup
   org <- querySlowService OrgLookup
   return (ad, org)
 

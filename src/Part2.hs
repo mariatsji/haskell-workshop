@@ -1,5 +1,7 @@
 module Part2
     ( checkoutItems
+    , ResponseData(..)
+    , Item(..)
     )
 where
 
@@ -12,17 +14,17 @@ import           Lib.CCLib
 -- use `stack build`, and see if you can make your code
 -- compile after this lib bump
 -- You should only change code in this file
-checkoutItems :: [Item] -> Integer -> UserFeedback
+checkoutItems :: [Item] -> Integer -> ResponseData
 checkoutItems items creditCard =
     let
         creditCardValid = validate creditCard
         totPrice        = totalPrice items
         amountString    = show totPrice
         userResponse    = case creditCardValid of
-            False -> UserFeedback
+            False -> ResponseData
                 "Even though we value your creativity, we need an actual credit card"
                 Nothing
-            True -> UserFeedback
+            True -> ResponseData
                 (  "Thanks, this credit card will be drained of "
                 ++ amountString
                 ++ ",-"
@@ -31,7 +33,7 @@ checkoutItems items creditCard =
     in
         userResponse
 
-data UserFeedback = UserFeedback String (Maybe Integer)
+data ResponseData = ResponseData String (Maybe Integer)
 
 -- The 3 items in our web store
 data Item = Sega8Bit | Comodore64 | Atari2600

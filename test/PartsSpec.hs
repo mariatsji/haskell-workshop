@@ -5,6 +5,7 @@ import           Test.Tasty.QuickCheck as QC
 
 import           Numeric.Natural
 import           Part1
+import           Part2
 import           Prelude               hiding (sum)
 
 main = do
@@ -46,6 +47,7 @@ unit =
     applySpec
     applysSpec
     bitSpec
+    refactorSpec
 
 helloWorldSpec :: Spec
 helloWorldSpec =
@@ -106,3 +108,12 @@ bitSpec =
     it "represents the one bit" $ do
       prettyPrint One `shouldBe` '1'
         
+refactorSpec :: Spec
+refactorSpec =
+  describe "Part2" $ do
+    it "refactors credit card lib bump invalid card" $ do
+      let (ResponseData _ price) = checkoutItems [Atari2600] 4012888888881882
+      price `shouldBe` Nothing
+    it "refactors credit card lib bump valid card" $ do
+      let (ResponseData _ price) = checkoutItems [Sega8Bit, Comodore64] 4012888888881881
+      price `shouldBe` (Just 1100)

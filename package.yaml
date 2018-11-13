@@ -40,7 +40,7 @@ executables:
 
 tests:
   haskell-workshop-test:
-    main:                Part1Spec.hs
+    main:                PartsSpec.hs
     source-dirs:         test
     ghc-options:
     - -threaded
