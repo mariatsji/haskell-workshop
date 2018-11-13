@@ -1,8 +1,6 @@
 # haskell-workshop
 
-Welcome!
-
-# Part 1 
+# Preparations
 
 ## Setup
 
@@ -28,15 +26,32 @@ Welcome!
 
     `> :quit`
 
-## Make the tests green
+## Open `src/Part1.hs` in an editor
 
-    Edit the code in `src/Part1.hs` and type `stack test`
+Edit the code in `src/Part1.hs` and type 
 
-## Make the  code in `src/Main.hs` fast!
+    `stack test`
 
-    See if you are able to use a built in function called `concurrently` to speed up the execution!
-    Test your solution with `stack build && time stack exec haskell-workshop` (linux / osx)
-    or `stack build` and `Measure-Command {start-process stack exec haskell-workshop -Wait}` (windows / powershell)
+until Part 1 is green!
+
+## Open `src/Part2.hs` in an editor
+
+Edit the code in `src/Part2.hs` and type
+
+    `stack test`
+    
+until Part 2 is green!
+
+## Bonus-task : Make the  code in `src/Main.hs` fast!
+
+See if you are able to use a built in function called `concurrently` to speed up the execution!
+Test your solution on linux/osx with 
+    
+    `stack build && time stack exec haskell-workshop`
+    
+or on Windows /w power-shell :
+    
+    `stack build` and `Measure-Command {start-process stack exec haskell-workshop -Wait}`
         
     
     
