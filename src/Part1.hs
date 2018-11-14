@@ -8,6 +8,7 @@ module Part1
   , applys
   , Bit(..)
   , prettyPrint
+  , greater
   )
 where
 
@@ -57,3 +58,7 @@ prettyPrint :: Bit -> Char
 prettyPrint Zero          = '0'
 prettyPrint One           = '1'
 prettyPrint SuperPosition = '*'
+
+-- return the greater of two natural numbers
+greater :: Natural -> Natural -> Natural
+greater x y = if x > y then x else y

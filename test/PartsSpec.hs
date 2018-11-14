@@ -46,6 +46,7 @@ unit = H.testSpec "count (unit tests)" $ do
   sumSpec
   applySpec
   applysSpec
+  greaterSpec
   bitSpec
   refactorSpec
   takeSpec
@@ -103,7 +104,7 @@ applysSpec = describe "applys" $ do
       "applies the identity function with no apprent result to the numbers [5,1,-2]"
     $ do
         applys id [5, 1, -2] `shouldBe` [5, 1, -2]
-  it "spplies the length function on [\"catnip\", \"catfood\"] to find [6,7]"
+  it "applies the length function on [\"catnip\", \"catfood\"] to find [6,7]"
     $ do
         applys length ["catnip", "catfood"] `shouldBe` ([6, 7] :: [Int])
 
@@ -113,6 +114,12 @@ bitSpec = describe "bit datatype" $ do
     prettyPrint Zero `shouldBe` '0'
   it "represents the one bit" $ do
     prettyPrint One `shouldBe` '1'
+
+greaterSpec :: Spec
+greaterSpec = describe "greater of two natural numbers" $ do
+  it "sais 4 is greater than 3" $ do
+    greater 4 3 `shouldBe` 4
+    greater 3 4 `shouldBe` 4
 
 refactorSpec :: Spec
 refactorSpec = describe "Part2 - refactor" $ do
