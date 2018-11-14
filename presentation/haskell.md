@@ -131,10 +131,21 @@ cylVolume diam h =
 
 ```haskell
 listOfInts :: [Integer]
-listOfInts = [1,2,3]
+listOfInts  = [1,2,3]
+
+concat :: [a] -> [a] -> [a]
+concat as bs = as ++ bs
 ```
 
-## higher order functions on list
+# recursion on lists
+
+```haskell
+uppercase :: [Char] -> [Char]
+uppercase [] = []
+uppercase (x:xs) = toUpper x :: uppercase xs
+```
+
+# higher order functions on list
 
 ```haskell
 inc :: [Integer] -> [Integer]
@@ -142,9 +153,16 @@ inc numbers = map (+1) numbers
 
 inc2 :: [Integer] -> [Integer]
 inc2 numbers = map (\x -> x + 1) numbes
+```
 
-inc3 [Integer] -> [Integer]
-inc3 = inc
+# higher order functions on list 2
+
+```haskell
+firstFive :: [a] -> [a]
+firstFive as = take 5 as
+
+onlyEven :: [Integer] -> [Integer]
+onlyEven xs = filter even xs
 ```
 
 # What to do

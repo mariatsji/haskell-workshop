@@ -42,6 +42,14 @@ Edit the code in `src/Part2.hs` and type
     
 until Part 2 is green!
 
+## Open `src/Part3.hs` in an editor
+
+Edit the code in `src/Part3.hs` and type
+
+    stack test
+    
+until Part 3 is green!
+
 ## Bonus-task : Make the  code in `src/Main.hs` fast!
 
 See if you are able to use a built in function called `concurrently` to speed up the execution!

@@ -62,3 +62,4 @@ prettyPrint SuperPosition = '*'
 -- return the greater of two natural numbers
 greater :: Natural -> Natural -> Natural
 greater x y = if x > y then x else y
+
