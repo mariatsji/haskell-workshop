@@ -8,23 +8,23 @@
 
 - Clone this repository
 
-    `cd haskell-workshop`
+    cd haskell-workshop
 
-    `stack --help`
+    stack --help
 
-    `stack setup`
+    stack setup
 
-    `stack build`
+    stack install
 
-    `stack test`
+    stack test
 
-    `stack exec haskell-workshop`
+    stack exec haskell-workshop
 
-    `stack repl`
+    stack repl
 
-    `> 1 + 1`
+    > 1 + 1
 
-    `> :quit`
+    > :quit
 
 ## Open `src/Part1.hs` in an editor
 
