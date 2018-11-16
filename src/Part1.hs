@@ -1,19 +1,6 @@
-module Part1
-  ( helloWorld
-  , add
-  , isSeven
-  , count
-  , sum
-  , apply
-  , applys
-  , Bit(..)
-  , prettyPrint
-  , greater
-  )
-where
+module Part1 where
 
 import           Numeric.Natural
-import           Prelude                           hiding ( sum )
 
 -- given a name (String) as input should create a personalized greeting
 -- e.g. `helloworld "Jens"` -> "Hello, Jens!"
@@ -26,31 +13,76 @@ add a b = a + b
 
 -- check if a number is `7`
 isSeven :: Integer -> Bool
-isSeven i = if (i == 7) then True else False
+isSeven i = i == 7
+
+add1ToEveryElement :: [Int] -> [Int]
+add1ToEveryElement [] = []
+add1ToEveryElement (a:as) = (a + 1) : add1ToEveryElement as
+
+negateEveryElement :: [Int] -> [Int]
+negateEveryElement [] = []
+negateEveryElement (a:as) = (-a) : negateEveryElement as
+
+doubleEveryElement :: [Int] -> [Int]
+doubleEveryElement [] = []
+doubleEveryElement (a:as) = (a*2) : doubleEveryElement as
+
+myMap :: (a -> b) -> [a] -> [b]
+myMap _ [] = []
+myMap f (a:as) =  f a : myMap f as
+
+add1WithMap :: [Int] -> [Int]
+add1WithMap = myMap (+1)
+
+negateWithMap :: [Int] -> [Int]
+negateWithMap = myMap negate
+
+doubleEveryElementWithMap :: [Int] -> [Int]
+doubleEveryElementWithMap = myMap (*2)
+
+doubleEveryOtherElement :: [Int] -> [Int]
+doubleEveryOtherElement [] = []
+doubleEveryOtherElement [a] = [a*2]
+doubleEveryOtherElement (a1:a2:as) = (a1 * 2) : a2 : (doubleEveryOtherElement as)
 
 -- count things in a list
-count :: [a] -> Natural
-count []       = 0
-count (x : xs) = succ . count $ xs
+myLength :: [a] -> Int
+myLength []       = 0
+myLength (x : xs) = 1 + myLength xs
 
 -- sum Ints in a list
-sum :: [Int] -> Int
-sum []       = 0
-sum (x : xs) = x + sum xs
+mySum :: [Int] -> Int
+mySum []       = 0
+mySum (x : xs) = x + mySum xs
 
--- apply a function given as an argument
-apply :: (a -> b) -> a -> b
-apply f a = f a
+allTrue :: [Bool] -> Bool
+allTrue [] = True
+allTrue (x : xs) = x && allTrue xs
 
--- apply a function to a list of arguments
-applys :: (a -> b) -> [a] -> [b]
-applys f []       = []
-applys f (x : xs) = f x : applys f xs
+anyTrue :: [Bool] -> Bool
+anyTrue [] = False
+anyTrue (x : xs) = x || anyTrue xs
+
+-- foldl (fold left) is also known as "reduce" in other languages
+myFoldl :: (b -> a -> b) -> b -> [a] -> b
+myFoldl _ b [] = b
+myFoldl f b (a:as) = myFoldl f (f b a) as
+
+lengthUsingFoldl :: [a] -> Int
+lengthUsingFoldl as = foldl undefined 0 as
+
+-- fold right. bonus question: what is the difference from foldl?
+myFoldr :: (a -> b -> b) -> b -> [a] -> b
+myFoldr _ b [] = b
+myFoldr f b (a:as) = f a (myFoldr f b as)
+
+allTrueUsingFoldr :: [Bool] -> Bool
+allTrueUsingFoldr as = myFoldr (&&) True as
 
 -- below is the existing definition of a Bit
 -- .. but you have just discovered quantum computing!
 -- So you should therefore expand the type with a new data constructor : SuperPosition
--- Make this change in the data definition below : 
+-- Make this change in the data definition below :
 data Bit = Zero | One | SuperPosition
 
 -- what should the new SuperPosition case look like? You decide!

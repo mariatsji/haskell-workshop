@@ -5,8 +5,6 @@ module Part3
     )
 where
 
-import           Part1 ( count )
-
 -- implement takeUntil, see Examples/Examples.hs on how to do recursion on a list
 -- Example : takeUntil (/= 2) [1,2,3]  -> [1]
 takeUntil :: (a -> Bool) -> [a] -> [a]
@@ -26,14 +24,14 @@ dropUntil predicate (x : xs) =
 -- Example : "xyyyyzz" -> "x4y2z"
 -- Example : "abc" -> "abc"
 -- Example : "" -> ""
--- Use takeUntil and dropUntil and Part2.count that you allready made
+-- Use takeUntil and dropUntil, and length that you learned in part 1
 -- Using let/in or helper-functions is a good idea
 compressString :: String -> String
 compressString [] = []
 compressString (x : xs) =
     let streak = x : takeUntil (== x) xs
         streakTail = dropUntil (== x) xs
-        len    = count streak
+        len    = length streak
         lenS   = if len > 1 then show len ++ [x] else streak
     in  lenS ++ compressString streakTail
 
