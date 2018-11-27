@@ -24,6 +24,10 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies:
+  - time
+  - async
+
 
 executables:
   haskell-workshop:
@@ -35,8 +39,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - haskell-workshop
-    - time
-    - async
 
 tests:
   haskell-workshop-test:

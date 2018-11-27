@@ -49,18 +49,3 @@ Edit the code in `src/Part3.hs` and type
     stack test
     
 until Part 3 is green!
-
-## Bonus-task : Make the  code in `src/Main.hs` fast!
-
-See if you are able to use a built in function called `concurrently` to speed up the execution!
-Test your solution on linux/osx with 
-    
-    stack build && time stack exec haskell-workshop
-    
-or on Windows /w power-shell :
-    
-    stack build
-    Measure-Command {start-process stack exec haskell-workshop -Wait}
-        
-    
-    
