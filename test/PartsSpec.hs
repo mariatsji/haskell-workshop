@@ -10,7 +10,9 @@ import           Part3
 
 main = do
   unitTree <- unit
-  defaultMain $ tests unitTree
+  unitTree2 <- unit2
+  unitTree3 <- unit3
+  defaultMain $ tests $ testGroup "Haskell Workshop Unit Tests" [unitTree, unitTree2, unitTree3]
 
 -- Property tests
 tests :: TestTree -> TestTree
@@ -39,14 +41,20 @@ greetString s = length (helloWorld s) > length s
 -- Unit Tests
 unit :: IO TestTree
 unit = H.testSpec "Part1 (unit tests)" $ do
+  greaterSpec
   helloWorldSpec
   addNrSpec
   countSpec
   sumSpec
   myMapSpec
-  greaterSpec
+
+unit2 :: IO TestTree
+unit2 = H.testSpec "Part2 (unit tests)" $ do
   bitSpec
   refactorSpec
+
+unit3 :: IO TestTree
+unit3 = H.testSpec "Part3 (unit tests)" $ do
   takeSpec
   dropSpec
   compressorSpec

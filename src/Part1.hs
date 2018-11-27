@@ -2,6 +2,10 @@ module Part1 where
 
 import           Numeric.Natural
 
+-- return the greater of two natural numbers
+greater :: Natural -> Natural -> Natural
+greater x y = if x > y then x else y
+
 -- given a name (String) as input should create a personalized greeting
 -- e.g. `helloworld "Jens"` -> "Hello, Jens!"
 helloWorld :: String -> String
@@ -78,20 +82,3 @@ myFoldr f b (a:as) = f a (myFoldr f b as)
 
 allTrueUsingFoldr :: [Bool] -> Bool
 allTrueUsingFoldr as = myFoldr (&&) True as
-
--- below is the existing definition of a Bit
--- .. but you have just discovered quantum computing!
--- So you should therefore expand the type with a new data constructor : SuperPosition
--- Make this change in the data definition below :
-data Bit = Zero | One | SuperPosition
-
--- what should the new SuperPosition case look like? You decide!
-prettyPrint :: Bit -> Char
-prettyPrint Zero          = '0'
-prettyPrint One           = '1'
-prettyPrint SuperPosition = '*'
-
--- return the greater of two natural numbers
-greater :: Natural -> Natural -> Natural
-greater x y = if x > y then x else y
-
