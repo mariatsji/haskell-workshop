@@ -79,6 +79,28 @@ myFoldr f b (a:as) = f a (myFoldr f b as)
 allTrueUsingFoldr :: [Bool] -> Bool
 allTrueUsingFoldr as = myFoldr (&&) True as
 
+-- Removing certain elements from a list
+-- aka Filtering
+
+noNegatives :: [Int] -> [Int]
+noNegatives [] = []
+noNegatives (a:as) =
+  if a >= 0
+    then a : noNegatives as
+    else noNegatives as
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter _ []     = []
+myFilter f (a:as) =
+  if f a
+  then a : myFilter f as
+  else myFilter f as
+
+noNegativesUsingFilter :: [Int] -> [Int]
+noNegativesUsingFilter = myFilter (>= 0)
+
+
+
 -- below is the existing definition of a Bit
 -- .. but you have just discovered quantum computing!
 -- So you should therefore expand the type with a new data constructor : SuperPosition
