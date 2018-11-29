@@ -7,7 +7,7 @@ greater :: Natural -> Natural -> Natural
 greater x y = if x > y then x else y
 
 -- given a name (String) as input should create a personalized greeting
--- e.g. `helloworld "Jens"` -> "Hello, Jens!"
+-- e.g. helloworld "Jens" == "Hello, Jens!"
 helloWorld :: String -> String
 helloWorld name = "Hello, " ++ name ++ "!"
 
@@ -102,3 +102,48 @@ myFilter f (a:as) =
 
 noNegativesUsingFilter :: [Int] -> [Int]
 noNegativesUsingFilter = myFilter (>= 0)
+
+-- Append one linked list after another
+-- e.g. [1,2,3] ++ [4,5,6] == [1,2,3,4,5,6]
+myAppend :: [a] -> [a] -> [a]
+myAppend []     bs = bs
+myAppend (a:as) bs = a : myAppend as bs
+
+myAppendUsingRightFold :: [a] -> [a] -> [a]
+myAppendUsingRightFold as bs = foldr (:) bs as
+
+-- concatenate a list of lists into a single list
+-- e.g. concat [[1,2],[3,4],[5,6]] == [1,2,3,4,5,6]
+myConcat :: [[a]] -> [a]
+myConcat = foldr myAppend []
+-- also known as "join" in haskell
+-- in other languages known as "flatten"
+-- tip: use the append function made earlier
+
+-- implement flatMap
+-- map and then flatten
+-- e.g. flatMap (\x -> [x,x]) [1,2,3] == [1,1,2,2,3,3]
+-- notice the similarity to the "map" function
+myFlatMap :: (a -> [b]) -> [a] -> [b]
+myFlatMap f as = myConcat (myMap f as)
+-- this function is known as "bind" in haskell and is written >>=, which is an infix function
+-- however, the order of the first two arguments are reversed
+-- so the example above becomes: [1,2,3] >>= (\x -> [x,x]) == [1,1,2,2,3,3]
+-- bonus question: why are the arguments reversed?
+
+-- create all possible pairs where the first element is from the first list
+-- and the second element is from the second list
+-- e.g. allCombinations [1,2] ['a', 'b'] == [(1,'a'), (1,'b'), (2,'a'), (2,'b')]
+-- use nested >>= calls
+allCombinations :: [a] -> [b] -> [(a,b)]
+allCombinations as bs =
+  as >>= (\a ->
+  bs >>= (\b ->
+    [(a,b)]
+  ))
+
+allCombinationsDo as bs = do
+  a <- as
+  b <- bs
+  pure (a,b)
+
