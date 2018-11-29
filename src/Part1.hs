@@ -20,16 +20,16 @@ isSeven :: Integer -> Bool
 isSeven i = i == 7
 
 add1ToEveryElement :: [Int] -> [Int]
-add1ToEveryElement [] = []
+add1ToEveryElement []     = []
 add1ToEveryElement (a:as) = (a + 1) : add1ToEveryElement as
 
 negateEveryElement :: [Int] -> [Int]
-negateEveryElement [] = []
+negateEveryElement []     = []
 negateEveryElement (a:as) = (-a) : negateEveryElement as
 
 doubleEveryElement :: [Int] -> [Int]
-doubleEveryElement [] = []
-doubleEveryElement (a:as) = (a*2) : doubleEveryElement as
+doubleEveryElement []     = []
+doubleEveryElement (a:as) = (a * 2) : doubleEveryElement as
 
 myMap :: (a -> b) -> [a] -> [b]
 myMap _ [] = []
@@ -44,48 +44,79 @@ negateWithMap = myMap negate
 doubleEveryElementWithMap :: [Int] -> [Int]
 doubleEveryElementWithMap = myMap (*2)
 
+-- double every other element in a list, starting with the first
+-- e.g. doubleEveryOtherElement [1,2,3,4,5] == [2,2,6,4,10]
 doubleEveryOtherElement :: [Int] -> [Int]
 doubleEveryOtherElement [] = []
 doubleEveryOtherElement [a] = [a*2]
 doubleEveryOtherElement (a1:a2:as) = (a1 * 2) : a2 : (doubleEveryOtherElement as)
 
--- count things in a list
-myLength :: [a] -> Int
-myLength []       = 0
-myLength (x : xs) = 1 + myLength xs
-
--- sum Ints in a list
-mySum :: [Int] -> Int
-mySum []       = 0
-mySum (x : xs) = x + mySum xs
-
+-- return True if there are no false elements in the list
+-- e.g.
+--   allTrue [] == True
+--   allTrue [True, True, True] == True
+--   allTrue [True, False, True] == False
 allTrue :: [Bool] -> Bool
-allTrue [] = True
+allTrue []       = True
 allTrue (x : xs) = x && allTrue xs
 
+-- return True if there is at least one true element in the list
+-- e.g.
+--   anyTrue [] == False
+--   anyTrue [False, False] == False
+--   anyTrue [False, True] == True
 anyTrue :: [Bool] -> Bool
-anyTrue [] = False
+anyTrue []       = False
 anyTrue (x : xs) = x || anyTrue xs
 
--- foldl (fold left) is also known as "reduce" in other languages
+-- going through a list and reducing it to a single value like this is called "folding" (also known as "reducing" in some languages)
+-- create a generalized function for folding in a right associative way.
+-- e.g. myFoldr (*) 4 [1,2,3] == 1 * (2 * (3 * 4))
+myFoldr :: (a -> b -> b) -> b -> [a] -> b
+myFoldr _ b []       = b
+myFoldr f b (a : as) = f a (myFoldr f b as)
+-- as you may have guessed, this function already exists in haskell
+-- and is called `foldr` ("fold right")
+
+allTrueUsingFoldr :: [Bool] -> Bool
+allTrueUsingFoldr as = foldr (&&) True as
+
+anyTrueUsingFoldr :: [Bool] -> Bool
+anyTrueUsingFoldr as = foldr (||) False as
+
+-- sum Ints in a list
+-- e.g. mySum [1,2,3] == 6
+-- use a tail recursive helper function (we've named it "loop")
+mySum :: [Int] -> Int
+mySum as = loop 0 as
+  where
+    loop acc []     = acc
+    loop acc (x:xs) = loop (acc + x) xs
+
+-- count elements in a list
+-- e.g. myLength [4,5,6] == 3
+myLength :: [a] -> Int
+myLength as = loop 0 as
+  where
+    loop acc []     = acc
+    loop acc (x:xs) = loop (acc + 1) xs
+
+-- write a generalized function for folding in a left associative way
+-- e.g. myFoldl (*) 1 [2,3,4] == ((1 * 2) * 3) * 4
 myFoldl :: (b -> a -> b) -> b -> [a] -> b
 myFoldl _ b [] = b
 myFoldl f b (a:as) = myFoldl f (f b a) as
 
+sumUsingFoldl :: [Int] -> Int
+sumUsingFoldl = foldl (+) 0
+
 lengthUsingFoldl :: [a] -> Int
-lengthUsingFoldl as = foldl undefined 0 as
-
--- fold right. bonus question: what is the difference from foldl?
-myFoldr :: (a -> b -> b) -> b -> [a] -> b
-myFoldr _ b [] = b
-myFoldr f b (a:as) = f a (myFoldr f b as)
-
-allTrueUsingFoldr :: [Bool] -> Bool
-allTrueUsingFoldr as = myFoldr (&&) True as
+lengthUsingFoldl as = foldl increment 0 as
+  where
+    increment b _ = b + 1
 
 -- Removing certain elements from a list
 -- aka Filtering
-
 noNegatives :: [Int] -> [Int]
 noNegatives [] = []
 noNegatives (a:as) =
@@ -141,9 +172,3 @@ allCombinations as bs =
   bs >>= (\b ->
     [(a,b)]
   ))
-
-allCombinationsDo as bs = do
-  a <- as
-  b <- bs
-  pure (a,b)
-
