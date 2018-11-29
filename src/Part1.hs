@@ -135,11 +135,15 @@ noNegativesUsingFilter :: [Int] -> [Int]
 noNegativesUsingFilter = myFilter (>= 0)
 
 -- Append one linked list after another
--- e.g. (myAppend [1,2,3] [4,5,6]) == [1,2,3,4,5,6]
+-- this function already exists as ++ in haskell
+-- e.g. [1,2,3] ++ [4,5,6] == [1,2,3,4,5,6]
+-- hint: recursively prepend
 myAppend :: [a] -> [a] -> [a]
 myAppend []       bs = bs
 myAppend (a : as) bs = a : myAppend as bs
 
+-- Your implementation of append might look familiar
+-- Try reimplementing it using a right fold
 myAppendUsingRightFold :: [a] -> [a] -> [a]
 myAppendUsingRightFold as bs = foldr (:) bs as
 
@@ -154,7 +158,7 @@ myConcat = foldr (++) []
 -- implement flatMap
 -- map and then flatten
 -- e.g. (flatMap (\x -> [x,x]) [1,2,3]) == [1,1,2,2,3,3]
--- notice the similarity to the "map" function
+-- notice the similarity to the signature of the `map` function
 flatMap :: (a -> [b]) -> [a] -> [b]
 flatMap f as = myConcat (myMap f as)
 -- this function is known as "bind" in haskell and is written >>=, which is an infix function
