@@ -9,17 +9,42 @@ import           Part2
 import           Part3
 
 main = do
-  unitTree <- unit
-  unitTree2 <- unit2
-  unitTree3 <- unit3
-  defaultMain $ tests $ testGroup "Haskell Workshop Unit Tests" [unitTree, unitTree2, unitTree3]
+  t1 <- part1Tests
+  t2 <- part2Tests
+  t3 <- part3Tests
+  defaultMain $ testGroup "Haskell Workshop Unit Tests" [t1, t2, t3]
+
+part1Tests :: IO TestTree
+part1Tests = do
+  units <- part1Units
+  let tg1 = testGroup "Part1 (unit tests)" units
+      tg2 = testGroup "Part1 (property tests" part1Properties
+  return (testGroup "Part1" [tg1, tg2])
+
+-- Unit Tests
+part1Units :: IO [TestTree]
+part1Units = H.testSpecs $ do
+  greaterSpec
+  helloWorldSpec
+  addNrSpec
+  countSpec
+  sumSpec
+  myMapSpec
+
+part2Tests :: IO TestTree
+part2Tests = H.testSpec "Part2 (unit tests)" $ do
+  bitSpec
+  refactorSpec
+
+part3Tests :: IO TestTree
+part3Tests = H.testSpec "Part3 (unit tests)" $ do
+  takeSpec
+  dropSpec
+  compressorSpec
 
 -- Property tests
-tests :: TestTree -> TestTree
-tests tree = testGroup "Part1" $ tree : properties
-
-properties :: [TestTree]
-properties =
+part1Properties :: [TestTree]
+part1Properties =
   [ QC.testProperty "helloWorld (property tests)" greetString
   , QC.testProperty "add (property tests)" addProp
   , QC.testProperty "myLength (property tests)" countList
@@ -38,26 +63,6 @@ sumList xs = mySum xs == foldl (+) 0 xs
 greetString :: String -> Bool
 greetString s = length (helloWorld s) > length s
 
--- Unit Tests
-unit :: IO TestTree
-unit = H.testSpec "Part1 (unit tests)" $ do
-  greaterSpec
-  helloWorldSpec
-  addNrSpec
-  countSpec
-  sumSpec
-  myMapSpec
-
-unit2 :: IO TestTree
-unit2 = H.testSpec "Part2 (unit tests)" $ do
-  bitSpec
-  refactorSpec
-
-unit3 :: IO TestTree
-unit3 = H.testSpec "Part3 (unit tests)" $ do
-  takeSpec
-  dropSpec
-  compressorSpec
 
 helloWorldSpec :: Spec
 helloWorldSpec = describe "helloWorld" $ do
@@ -128,21 +133,21 @@ refactorSpec = describe "Part2 - refactor" $ do
     price `shouldBe` (Just 1100)
 
 takeSpec :: Spec
-takeSpec = describe "Part3 - takeUntil" $ do
+takeSpec = describe "takeUntil" $ do
   it "takes until a predicate becomes false for (<3) [1,2,3,4,5] " $ do
     takeUntil (<3) [1 .. 5] `shouldBe` [1,2]
   it "takes nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
     takeUntil (>3) [1 .. 5] `shouldBe` []
 
 dropSpec :: Spec
-dropSpec = describe "Part3 - dropUntil" $ do
+dropSpec = describe "dropUntil" $ do
   it "drops until a predicate becomes false for (<3) [1,2,3,4,5]" $ do
     dropUntil (<3) [1 .. 5] `shouldBe` [3,4,5]
   it "drops nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
     dropUntil (>3) [1 .. 5] `shouldBe` [1 .. 5]
 
 compressorSpec :: Spec
-compressorSpec = describe "Part3 - compress String" $ do
+compressorSpec = describe "compress String" $ do
   it "compresses an empty string to the same empty string" $ do
     compressString "" `shouldBe` ""
   it "compresses a string untouched when no streaks \"abc\" -> \"abc\"" $ do
