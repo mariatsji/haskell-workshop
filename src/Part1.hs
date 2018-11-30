@@ -70,6 +70,7 @@ doubleEveryElementWithMap as = map (* 2) as
 
 -- double every other element in a list, starting with the first
 -- e.g. doubleEveryOtherElement [1,2,3,4,5] == [2,2,6,4,10]
+-- hint: map won't cut it
 doubleEveryOtherElement :: [Int] -> [Int]
 doubleEveryOtherElement []  = []
 doubleEveryOtherElement [a] = [a * 2]
@@ -82,16 +83,23 @@ doubleEveryOtherElementV2 as = zipWith doubleIfEvenIndex as [0..]
     doubleIfEvenIndex a idx = if even idx then a * 2 else a
 
 -- Remove all negative numbers from a list of ints
+-- e.g. (noNegatives [-2,-1,0,1,2]) == [0,1,2]
 noNegatives :: [Int] -> [Int]
 noNegatives []       = []
 noNegatives (a : as) = if a >= 0 then a : noNegatives as else noNegatives as
 
+-- create a generalized function to remove elements based on a
+-- predicate function. Elements that return False when applied to
+-- the predicate are removed.
+-- e.g. (myFilter (==1) [1,2,3,2,1]) == [1,1]
 myFilter :: (a -> Bool) -> [a] -> [a]
 myFilter _ []       = []
 myFilter f (a : as) = if f a then a : myFilter f as else myFilter f as
+-- this function already exists as `filter`
 
+-- let's use filter to more concisely implement noNegatives
 noNegativesUsingFilter :: [Int] -> [Int]
-noNegativesUsingFilter = myFilter (>= 0)
+noNegativesUsingFilter = filter (>= 0)
 
 -- return True if there are no false elements in the list
 -- e.g.
