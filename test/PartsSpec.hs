@@ -36,8 +36,23 @@ part1Units = H.testSpecs $ do
   negateWithMapSpec
   doubleEveryElementWithMapSpec
   doubleEveryOtherElementSpec
-  countSpec
-  sumSpec
+  noNegativesSpec
+  myFilterSpec
+  noNegativesUsingFilterSpec
+  allTrueSpec
+  anyTrueSpec
+  myFoldrSpec
+  allTrueUsingFoldrSpec
+  anyTrueUsingFoldrSpec
+  mySumSpec
+  myLengthSpec
+  myFoldlSpec
+  sumUsingFoldlSpec
+  myAppendSpec
+  myAppendUsingRightFoldSpec
+  myConcatSpec
+  flatMapSpec
+  allCombinationsSpec
 
 part2Tests :: IO TestTree
 part2Tests = H.testSpec "Part2 (unit tests)" $ do
@@ -53,27 +68,34 @@ part3Tests = H.testSpec "Part3 (unit tests)" $ do
 -- Property tests
 part1Properties :: [TestTree]
 part1Properties =
-  [ QC.testProperty "helloWorld (property tests)" greetString
+  [ QC.testProperty "helloWorld (property tests)" greetStringProp
   , QC.testProperty "add (property tests)" addProp
-  , QC.testProperty "myLength (property tests)" countList
-  , QC.testProperty "mySum (property tests)" sumList
-  , QC.testProperty "myMap (property tests)" myMapProperty
+  , QC.testProperty "myLength (property tests)" countListProp
+  , QC.testProperty "mySum (property tests)" sumListProp
+  , QC.testProperty "myMap (property tests)" myMapProp
+  , QC.testProperty "noNegativesProp (property tests)" noNegativesProp
   ]
 
-countList :: [Int] -> Bool
-countList xs = myLength xs == (fromIntegral . length $ xs)
+countListProp :: [Int] -> Bool
+countListProp xs = myLength xs == (fromIntegral . length $ xs)
 
 addProp :: (Float, Float) -> Bool
 addProp (a, b) = add a b == a + b
 
-sumList :: [Int] -> Bool
-sumList xs = mySum xs == foldl (+) 0 xs
+sumListProp :: [Int] -> Bool
+sumListProp xs = mySum xs == foldl (+) 0 xs
 
-greetString :: String -> Bool
-greetString s = length (helloWorld s) > length s
+greetStringProp :: String -> Bool
+greetStringProp s = length (helloWorld s) > length s
 
-myMapProperty :: (Int -> Int, [Int]) -> Bool
-myMapProperty (f, l) = myMap f l == map f l
+myMapProp :: (Int -> Int, [Int]) -> Bool
+myMapProp (f, l) = myMap f l == map f l
+
+noNegativesProp :: [Int] -> Bool
+noNegativesProp k =
+  let l= noNegatives k
+  in case l of [] -> True
+               (x:xs)  -> x >= 0 && noNegativesProp xs  
 
 helloWorldSpec :: Spec
 helloWorldSpec = describe "helloWorld" $ do
@@ -143,19 +165,136 @@ doubleEveryOtherElementSpec = describe "doubleEveryOtherElement" $ do
   it "doubles every element starting with the first in the list [2, 1, 3, 1]" $ do
     doubleEveryOtherElement [2, 1, 3, 1] `shouldBe` [4, 1, 6, 1] 
 
-countSpec :: Spec
-countSpec = describe "count" $ do
+noNegativesSpec :: Spec
+noNegativesSpec = describe "noNegatives" $ do
+  it "removes no negative nrs from the empty list []" $ do
+    noNegatives [] `shouldBe` []
+  it "removes all negative numbers from the list [2,-6,0,-2]" $ do
+    noNegatives [2,-6,0,-2] `shouldBe` [2,0]
+
+myFilterSpec :: Spec
+myFilterSpec = describe "myFilter" $ do
+  it "keeps odd nrs in the empty list []" $ do
+    myFilter odd [] `shouldBe` []
+  it "keeps even in the list [-3,5,6,7]" $ do
+    myFilter even [-3,5,6,7] `shouldBe` [6]
+
+noNegativesUsingFilterSpec :: Spec
+noNegativesUsingFilterSpec = describe "noNegativesUsingFilter" $ do
+  it "keeps no negative nrs in the empty list []" $ do
+    noNegativesUsingFilter [] `shouldBe` []
+  it "keeps no negatives in the list [-3,3,4,5,-1]" $ do
+    noNegativesUsingFilter [-3,3,4,5,-1] `shouldBe` [3,4,5]
+
+allTrueSpec :: Spec
+allTrueSpec = describe "allTrue" $ do
+  it "sais all is true in the empty list []" $ do
+    allTrue [] `shouldBe` True
+  it "sais True given the list [True, True]" $ do
+    allTrue [True, True] `shouldBe` True
+  it "sais False given the list [True, False] " $ do
+    allTrue [True, False] `shouldBe` False
+
+anyTrueSpec :: Spec
+anyTrueSpec = describe "anyTrue" $ do
+  it "sais False to the empty list []" $ do
+    anyTrue [] `shouldBe` False
+  it "sais False given the list [False, False]" $ do
+    anyTrue [False, False] `shouldBe` False
+  it "sais True given the list [True, False]" $ do
+    anyTrue [True, False] `shouldBe` True
+
+myFoldrSpec :: Spec
+myFoldrSpec = describe "myFoldr" $ do
+  it "folds the list [\"apple\", \"banana\"] into the word \"applebanana\" when using string concatenation" $ do
+    myFoldr (++) "" ["apple", "banana"]`shouldBe` "applebanana"
+  it "folds the list [1,2,3] into the list [1,2,3] using cons" $ do
+    myFoldr (\x a -> x : a) [] [1,2,3] `shouldBe` [1,2,3]
+
+allTrueUsingFoldrSpec :: Spec
+allTrueUsingFoldrSpec = describe "allTrueUsingFoldr" $ do
+  it "sais True for the empty list []" $ do
+    allTrueUsingFoldr [] `shouldBe` True
+  it "sais False for the list [True, False]" $ do
+    allTrueUsingFoldr [True, False] `shouldBe` False
+  it "sais True for the list [True, True]" $ do
+    allTrueUsingFoldr [True, True] `shouldBe` True
+
+anyTrueUsingFoldrSpec :: Spec
+anyTrueUsingFoldrSpec = describe "anyTrueUsingFoldr" $ do
+  it "sais False for the empty list []" $ do
+    anyTrueUsingFoldr [] `shouldBe` False
+  it "sais False for the list [False, False]" $ do
+    anyTrueUsingFoldr [] `shouldBe` False
+  it "sais True for the list [False, True, False]" $ do
+    anyTrueUsingFoldr [False, True, False] `shouldBe` True
+
+mySumSpec :: Spec
+mySumSpec = describe "mySum" $ do
+  it "sais 0 for the empty list []" $ do
+    mySum [] `shouldBe` 0
+  it "sais -3 for the list [-2,-1]" $ do
+    mySum [-2,-1] `shouldBe` (-3)
+
+myLengthSpec :: Spec
+myLengthSpec = describe "myLength" $ do
   it "counts the length of [] to 0" $ do
     myLength [] `shouldBe` 0
   it "counts the length of [2,5,2,3,6,3,4] to 7" $ do
     myLength [2, 5, 2, 3, 6, 3, 4] `shouldBe` 7
 
-sumSpec :: Spec
-sumSpec = describe "mySum" $ do
-  it "sums [] to 0" $ do
-    sum [] `shouldBe` 0
-  it "sums [-5,2,13] to 10" $ do
-    sum [-5, 2, 13] `shouldBe` 10
+myFoldlSpec :: Spec
+myFoldlSpec = describe "myFoldl" $ do
+  it "folds the empty list over (+) to 0" $ do
+    myFoldl (+) 0 [] `shouldBe` 0
+  it "folds the list [1,2,3] over Cons (:) to the list [3,2,1]" $ do
+    myFoldl (\a c -> c : a) [] [1,2,3] `shouldBe` [3,2,1]
+
+sumUsingFoldlSpec :: Spec
+sumUsingFoldlSpec = describe "sumUsingFoldl" $ do
+  it "sums the list [1 .. 100] to 5050" $ do
+    sumUsingFoldl [1 .. 100] `shouldBe` 5050
+
+lengthUsingFoldlSpec :: Spec
+lengthUsingFoldlSpec = describe "lengthUsingFoldl" $ do
+  it "finds the length of the empty list []" $ do
+    lengthUsingFoldl [] `shouldBe` 0
+  it "finds the length of the list [\"hi\", \"hi\", \"hi\"]" $ do
+    lengthUsingFoldl ["hi", "hi", "hi"] `shouldBe` 3
+
+myAppendSpec :: Spec
+myAppendSpec = describe "myAppend" $ do
+  it "appends [1] to the empty list [] forming [1]" $ do
+    myAppend [1] [] `shouldBe` [1]
+  it "appends [] 1 and [2,3] forming [1,2,3]" $ do
+    myAppend [1] [2,3] `shouldBe` [1,2,3]
+
+
+myAppendUsingRightFoldSpec :: Spec
+myAppendUsingRightFoldSpec = describe "myAppendUsingRightFold" $ do
+  it "appends [] and [] forming []" $ do
+    myAppendUsingRightFold ([] :: [Int]) [] `shouldBe` []
+  it "appends [2] and [3,4] forming [2,3,4]" $ do
+    myAppendUsingRightFold [2] [3,4] `shouldBe` [2,3,4]
+
+myConcatSpec :: Spec
+myConcatSpec = describe "myConcat" $ do
+  it "concats [['h','i']] to ['h','i']" $ do
+    myConcat [['h','i']] `shouldBe` "hi"
+
+flatMapSpec :: Spec
+flatMapSpec = describe "flatMap" $ do
+  it "flatMaps the empty list [] with the function \\i -> [] to the empty list []" $ do
+    flatMap (const ([] :: [Char])) [] `shouldBe` []
+  it "flatMaps a list [1,2,3] with the function \\i -> i : [1] to the list [1,1,2,1,3,1]" $ do
+    flatMap (\i -> i : [1]) [1,2,3] `shouldBe` [1,1,2,1,3,1]
+    
+allCombinationsSpec :: Spec
+allCombinationsSpec = describe "allCombinationsSpec" $ do
+  it "finds all combinations between the list [1,2,3] and [] to be []" $ do
+    allCombinations [1,2,3] ([] :: [Char]) `shouldBe` []
+  it "finds all combinations between the lists [1,2] ['a','b'] as [(1,'a'), (1,'b'), (2,'a'), (2,'b')]" $ do
+    allCombinations [1,2] ['a','b'] `shouldBe` [(1,'a'), (1,'b'), (2,'a'), (2,'b')]
 
 myMapSpec :: Spec
 myMapSpec = describe "myMap" $ do
