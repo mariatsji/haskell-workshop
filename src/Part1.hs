@@ -38,12 +38,15 @@ myMap :: (a -> b) -> [a] -> [b]
 myMap _ []       = []
 myMap f (a : as) = f a : myMap f as
 
+-- use myMap above (or just map if you couldn't figure myMap out..)
 add1WithMap :: [Int] -> [Int]
 add1WithMap = myMap (+ 1)
 
+-- use myMap above (or just map if you couldn't figure myMap out..)
 negateWithMap :: [Int] -> [Int]
 negateWithMap = myMap negate
 
+-- use myMap above (or just map if you couldn't figure myMap out..)
 doubleEveryElementWithMap :: [Int] -> [Int]
 doubleEveryElementWithMap = myMap (* 2)
 

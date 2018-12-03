@@ -27,9 +27,17 @@ part1Units = H.testSpecs $ do
   greaterSpec
   helloWorldSpec
   addNrSpec
+  isSevenSpec
+  add1Spec
+  negateSpec
+  doubleSpec
+  myMapSpec
+  add1WithMapSpec
+  negateWithMapSpec
+  doubleEveryElementWithMapSpec
+  doubleEveryOtherElementSpec
   countSpec
   sumSpec
-  myMapSpec
 
 part2Tests :: IO TestTree
 part2Tests = H.testSpec "Part2 (unit tests)" $ do
@@ -49,6 +57,7 @@ part1Properties =
   , QC.testProperty "add (property tests)" addProp
   , QC.testProperty "myLength (property tests)" countList
   , QC.testProperty "mySum (property tests)" sumList
+  , QC.testProperty "myMap (property tests)" myMapProperty
   ]
 
 countList :: [Int] -> Bool
@@ -63,6 +72,8 @@ sumList xs = mySum xs == foldl (+) 0 xs
 greetString :: String -> Bool
 greetString s = length (helloWorld s) > length s
 
+myMapProperty :: (Int -> Int, [Int]) -> Bool
+myMapProperty (f, l) = myMap f l == map f l
 
 helloWorldSpec :: Spec
 helloWorldSpec = describe "helloWorld" $ do
@@ -82,6 +93,55 @@ isSevenSpec = describe "isSeven" $ do
     isSeven 0 `shouldBe` False
   it "checks that a number is 7 using 7" $ do
     isSeven 7 `shouldBe` True
+
+add1Spec :: Spec
+add1Spec = describe "add1ToEveryElement" $ do
+  it "adds 1 to every element of an empty list []" $ do
+    add1ToEveryElement [] `shouldBe` []
+  it "adds 1 to every element of the list [2,6,-1]" $ do
+    add1ToEveryElement [2, 6, -1] `shouldBe` [3, 7, 0] 
+
+negateSpec :: Spec
+negateSpec = describe "negateEveryElement" $ do
+  it "negates every element of an empty list []" $ do
+    negateEveryElement [] `shouldBe` []
+  it "neages every element of the list [-1,2,0]" $ do
+    negateEveryElement [-1, 2, 0] `shouldBe` [1, -2, 0]
+
+doubleSpec :: Spec
+doubleSpec = describe "doubleEveryElement" $ do
+  it "doubles every element of an empty list []" $ do
+    doubleEveryElement [] `shouldBe` []
+  it "doubles every element of the list [-2, 2, 5]" $ do
+    doubleEveryElement [-2, 2, 5] `shouldBe` [-4, 4, 10]
+
+add1WithMapSpec :: Spec
+add1WithMapSpec = describe "add1WithMap" $ do
+  it "adds 1 to every element using myMap to the empty list []" $ do
+    add1WithMap [] `shouldBe` []
+  it "adds 1 to every element using myMap of the list [2,2,-1]" $ do
+    add1WithMap [2,2,-1] `shouldBe` [3,3,0]
+
+negateWithMapSpec :: Spec
+negateWithMapSpec = describe "negateWithMap" $ do
+  it "negates every element using myMap of the empty list []" $ do
+    negateWithMap [] `shouldBe` []
+  it "negates every element using myMap of the list [50, -50]" $ do
+    negateWithMap [50, -50] `shouldBe` [-50, 50]
+
+doubleEveryElementWithMapSpec :: Spec
+doubleEveryElementWithMapSpec = describe "doubleEveryElementWithMap" $ do
+  it "doubles every element using myMap of the empty list []" $ do
+    doubleEveryElementWithMap [] `shouldBe` []
+  it "doubles every element using myMap on the list [6, -1, 0]" $ do
+    doubleEveryElementWithMap [6, -1, 0] `shouldBe` [12, -2, 0]
+
+doubleEveryOtherElementSpec :: Spec
+doubleEveryOtherElementSpec = describe "doubleEveryOtherElement" $ do
+  it "doubles every element starting with the first in the empty list []" $ do
+    doubleEveryOtherElement [] `shouldBe` []
+  it "doubles every element starting with the first in the list [2, 1, 3, 1]" $ do
+    doubleEveryOtherElement [2, 1, 3, 1] `shouldBe` [4, 1, 6, 1] 
 
 countSpec :: Spec
 countSpec = describe "count" $ do
