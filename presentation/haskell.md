@@ -63,7 +63,7 @@ myFunction :: Int -> (Int -> Int)
 ### Everything is an expression
 
 ```haskell
-isNine :: Integer -> Bool
+isNine :: Int -> Bool
 isNine i = if i == 9
   then True
   else False
@@ -86,7 +86,7 @@ cylVolume diam h =
 ### lists
 
 ```haskell
-listOfInts :: [Integer]
+listOfInts :: [Int]
 listOfInts  = [1,2,3]
 
 concat :: [a] -> [a] -> [a]
@@ -138,11 +138,11 @@ uppercase (x:xs) = toUpper x :: uppercase xs
 ### Functions over lists
 
 ```haskell
-inc :: [Integer] -> [Integer]
+inc :: [Int] -> [Int]
 inc numbers = map (+1) numbers
 
-inc2 :: [Integer] -> [Integer]
-inc2 numbers = map (\x -> x + 1) numbes
+inc2 :: [Int] -> [Int]
+inc2 numbers = map (\x -> x + 1) numbers
 ```
 
 
@@ -152,7 +152,7 @@ inc2 numbers = map (\x -> x + 1) numbes
 firstFive :: [a] -> [a]
 firstFive as = take 5 as
 
-onlyEven :: [Integer] -> [Integer]
+onlyEven :: [Int] -> [Int]
 onlyEven xs = filter even xs
 ```
 

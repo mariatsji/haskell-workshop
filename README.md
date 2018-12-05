@@ -1,6 +1,8 @@
 # haskell-workshop
 
+
 # Preparations
+
 
 ## Setup
 
@@ -26,6 +28,17 @@
 
     > :quit
 
+
+## View the slides
+
+    open presentation/index.html
+    
+
+## Cheat Sheet
+
+    open presentation/CheatSheet.pdf
+
+
 ## Open `src/Part1.hs` in an editor
 
 Edit the code in `src/Part1.hs` and type 
@@ -34,6 +47,7 @@ Edit the code in `src/Part1.hs` and type
 
 until Part 1 is green!
 
+
 ## Open `src/Part2.hs` in an editor
 
 Edit the code in `src/Part2.hs` and type
@@ -41,6 +55,7 @@ Edit the code in `src/Part2.hs` and type
     ./runtests 2
     
 until Part 2 is green!
+
 
 ## And so on an so forth until Part 7 is green!
 

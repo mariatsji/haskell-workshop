@@ -145,7 +145,7 @@ myFunction 1 :: Int -&gt; Int</code></pre>
 </section>
 <section id="everything-is-an-expression" class="slide level3">
 <h3>Everything is an expression</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1"><span class="ot">isNine ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1"><span class="ot">isNine ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
 <a class="sourceLine" id="cb7-2" title="2">isNine i <span class="fu">=</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">9</span></a>
 <a class="sourceLine" id="cb7-3" title="3">  <span class="kw">then</span> <span class="dt">True</span></a>
 <a class="sourceLine" id="cb7-4" title="4">  <span class="kw">else</span> <span class="dt">False</span></a></code></pre></div>
@@ -161,7 +161,7 @@ myFunction 1 :: Int -&gt; Int</code></pre>
 </section>
 <section id="lists" class="slide level3">
 <h3>lists</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="ot">listOfInts ::</span> [<span class="dt">Integer</span>]</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="ot">listOfInts ::</span> [<span class="dt">Int</span>]</a>
 <a class="sourceLine" id="cb9-2" title="2">listOfInts  <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb9-3" title="3"></a>
 <a class="sourceLine" id="cb9-4" title="4"><span class="fu">concat</span><span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</a>
@@ -203,18 +203,18 @@ Ok, one module loaded.
 </section>
 <section id="functions-over-lists" class="slide level3">
 <h3>Functions over lists</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="ot">inc ::</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>]</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="ot">inc ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</a>
 <a class="sourceLine" id="cb14-2" title="2">inc numbers <span class="fu">=</span> <span class="fu">map</span> (<span class="fu">+</span><span class="dv">1</span>) numbers</a>
 <a class="sourceLine" id="cb14-3" title="3"></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="ot">inc2 ::</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>]</a>
-<a class="sourceLine" id="cb14-5" title="5">inc2 numbers <span class="fu">=</span> <span class="fu">map</span> (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) numbes</a></code></pre></div>
+<a class="sourceLine" id="cb14-4" title="4"><span class="ot">inc2 ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</a>
+<a class="sourceLine" id="cb14-5" title="5">inc2 numbers <span class="fu">=</span> <span class="fu">map</span> (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) numbers</a></code></pre></div>
 </section>
 <section id="functions-over-lists-2" class="slide level3">
 <h3>Functions over lists 2</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb15-1" title="1"><span class="ot">firstFive ::</span> [a] <span class="ot">-&gt;</span> [a]</a>
 <a class="sourceLine" id="cb15-2" title="2">firstFive as <span class="fu">=</span> <span class="fu">take</span> <span class="dv">5</span> as</a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
-<a class="sourceLine" id="cb15-4" title="4"><span class="ot">onlyEven ::</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>]</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="ot">onlyEven ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</a>
 <a class="sourceLine" id="cb15-5" title="5">onlyEven xs <span class="fu">=</span> <span class="fu">filter</span> <span class="fu">even</span> xs</a></code></pre></div>
 </section>
 <section id="part-6" class="slide level3">

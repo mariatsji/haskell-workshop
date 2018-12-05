@@ -9,4 +9,4 @@
 	open https://pandoc.org/MANUAL.html#creating-a-pdf
 	brew cask install mactex
 	(restart shell)
-	pandoc index.html -o workshop.pdf
+	pandoc index.html -o CheatSheet.pdf
