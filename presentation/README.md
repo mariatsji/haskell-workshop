@@ -8,4 +8,5 @@
 
 	open https://pandoc.org/MANUAL.html#creating-a-pdf
 	brew cask install mactex
-	pandoc index.html --pdf-engine mactex -o test.pdf
+	(restart shell)
+	pandoc index.html -o workshop.pdf
