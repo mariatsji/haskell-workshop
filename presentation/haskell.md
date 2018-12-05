@@ -7,12 +7,16 @@ author: FINN.no
 ![](/Users/sjumilli//haskell/haskell-workshop/presentation/images/haskell-workshop.png)
 
 
+
 ### Haskell
 
 - Haskell / GHC
 - Purely functional
 - Statically Typed
 - Lazy
+
+
+### Part 1
 
 
 ### create a function
@@ -33,30 +37,30 @@ isPrime 7 = True
 ### create a function 2
 
 ```haskell
-myFunction :: String -> Int
-myFunction stringArg = length stringArg
+myFunction :: Int -> Int -> Int
+myFunction    a      b   =  (a + 1) * b ^ 2
 ```
 
+Applying arguments
 
-### Applying a function
-
-```haskell
-nextInt :: Integer -> Integer
-nextInt x = succ x
-```
-
-No paranthesis!
+    > myFunction 1 2
+    8
 
 
 ### Curried signatures
 
 ```haskell
-addTwoNumbers :: Integer -> Integer -> Integer
-addTwoNumbers a b = a + b
+myFunction :: Int -> Int -> Int
+```
+```haskell
+myFunction :: Int -> (Int -> Int)
 ```
 
+    >:t myFunction 1
+    myFunction 1 :: Int -> Int
 
-### if .. then .. else
+
+### Everything is an expression
 
 ```haskell
 isNine :: Integer -> Bool
@@ -65,7 +69,7 @@ isNine i = if i == 9
   else False
 ```
 
-Remember then
+You must have an else
 
 
 ### let .. in expressions
@@ -79,7 +83,7 @@ cylVolume diam h =
 ```
 
 
-## lists
+### lists
 
 ```haskell
 listOfInts :: [Integer]
@@ -90,7 +94,37 @@ concat as bs = as ++ bs
 ```
 
 
-## recursion on lists
+### REPL
+
+    $ stack repl ./src/Part1.hs
+    (...)
+    *Part1> 
+
+
+### Unloading and Loading
+
+    *Loaded Modules> :l
+    Ok, no modules loaded.
+    Prelude>
+
+    Prelude> :l Part1
+    Ok, one module loaded.
+    *Part1>
+
+
+### Evaluating values and types
+
+    >1 + 1
+    2
+
+    >:t 1
+    1 + 1 :: Num a => a
+
+
+### Part 2 - 5
+
+
+### Recursion on lists
 
 ```haskell
 uppercase :: [Char] -> [Char]
@@ -101,7 +135,7 @@ uppercase (x:xs) = toUpper x :: uppercase xs
 `x` is a `Char` but `xs` is a `[Char]`
 
 
-## Functions over lists
+### Functions over lists
 
 ```haskell
 inc :: [Integer] -> [Integer]
@@ -112,7 +146,7 @@ inc2 numbers = map (\x -> x + 1) numbes
 ```
 
 
-## Functions over lists 2
+### Functions over lists 2
 
 ```haskell
 firstFive :: [a] -> [a]
@@ -121,6 +155,9 @@ firstFive as = take 5 as
 onlyEven :: [Integer] -> [Integer]
 onlyEven xs = filter even xs
 ```
+
+
+### Part 6
 
 
 ### Creating a type
@@ -135,6 +172,7 @@ safe Green  = True
 ```
 
 
-## What to do
+### What to do
 
-- open README.md
+    git clone https://github.com/mariatsji/haskell-workshop
+    open README.md

@@ -2,7 +2,7 @@
 
     open https://github.com/jgm/pandoc/wiki/Using-pandoc-to-produce-reveal.js-slides
 	stack install pandoc
-	pandoc -t revealjs -s -o myslides.html myslides.md -V revealjs-url=https://revealjs.com
+	pandoc -t revealjs -s -o index.html haskell.md -V revealjs-url=https://revealjs.com -V theme=solarized
 
 ## To create pdf
 
