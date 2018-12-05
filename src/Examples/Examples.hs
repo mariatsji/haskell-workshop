@@ -21,11 +21,11 @@ contract d = if goodIdeaToHire d -- we have if else in Haskell too!
   else "<ManagerContract>Sign here .........</ManagerContract>" -- and you must always have an `else`
 
 -- curried syntax looks a little strange
-sumTriangleSides :: Integer -> Integer -> Integer -> Integer -- <- many arguments are given like this (last one is _return value_)
+sumTriangleSides :: Int -> Int -> Int -> Int -- <- many arguments are given like this (last one is _return value_)
 sumTriangleSides a b c = a + b + c
 
 -- but it allows us to call a function just like normal
-myTriangle :: Integer
+myTriangle :: Int
 myTriangle = sumTriangleSides 5 2 7
 
 -- if you are doing a lot in your function, let / in syntax helps readability
