@@ -3,16 +3,19 @@ import           Test.Tasty
 import           Test.Tasty.Hspec              as H
 import           Test.Tasty.QuickCheck         as QC
 
-import           Numeric.Natural
 import           Part1
 import           Part2
 import           Part3
+import           Part4
+import           Part5
+import           Part6
+import           Part7
 
 main = do
   t1 <- part1Tests
-  t2 <- part2Tests
-  t3 <- part3Tests
-  defaultMain $ testGroup "Haskell Workshop Unit Tests" [t1, t2, t3]
+  t6 <- part6Tests
+  t7 <- part7Tests
+  defaultMain $ testGroup "Haskell Workshop Unit Tests" [t1, t6, t7]
 
 part1Tests :: IO TestTree
 part1Tests = do
@@ -54,13 +57,13 @@ part1Units = H.testSpecs $ do
   flatMapSpec
   allCombinationsSpec
 
-part2Tests :: IO TestTree
-part2Tests = H.testSpec "Part2 (unit tests)" $ do
+part6Tests :: IO TestTree
+part6Tests = H.testSpec "Part6 (unit tests)" $ do
   bitSpec
   refactorSpec
 
-part3Tests :: IO TestTree
-part3Tests = H.testSpec "Part3 (unit tests)" $ do
+part7Tests :: IO TestTree
+part7Tests = H.testSpec "Part7 (unit tests)" $ do
   takeSpec
   dropSpec
   compressorSpec
@@ -316,13 +319,13 @@ bitSpec = describe "bit datatype" $ do
     prettyPrint One `shouldBe` '1'
 
 greaterSpec :: Spec
-greaterSpec = describe "greater of two natural numbers" $ do
+greaterSpec = describe "greater of two integer numbers" $ do
   it "sais 4 is greater than 3" $ do
     greater 4 3 `shouldBe` 4
     greater 3 4 `shouldBe` 4
 
 refactorSpec :: Spec
-refactorSpec = describe "Part2 - refactor" $ do
+refactorSpec = describe "Part6 - refactor" $ do
   it "refactors credit card lib bump invalid card" $ do
     let (ResponseData _ price) = checkoutItems [Atari2600] 4012888888881882
     price `shouldBe` Nothing

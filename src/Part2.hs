@@ -1,54 +1,64 @@
 module Part2 where
 
-import           Lib.CCLib
+-- add 1 to every element in a list of ints
+-- e.g. (add1ToEveryElement [1,2,3]) == [2,3,4]
+-- use a recursive function
+add1ToEveryElement :: [Int] -> [Int]
+add1ToEveryElement []       = []
+add1ToEveryElement (a : as) = (a + 1) : add1ToEveryElement as
 
--- below is the existing definition of a Bit
--- .. but you have just discovered quantum computing!
--- So you should therefore expand the type with a new data constructor : SuperPosition
--- Make this change in the data definition below :
-data Bit = Zero | One | SuperPosition
+-- negate every element in a list of ints
+-- e.g. (negateEveryElement [1,-2,3]) == [-1,2,-3]
+-- this should be very similar to the previous task
+negateEveryElement :: [Int] -> [Int]
+negateEveryElement []       = []
+negateEveryElement (a : as) = -a : negateEveryElement as
 
--- what should the new SuperPosition case look like? You decide!
-prettyPrint :: Bit -> Char
-prettyPrint Zero          = '0'
-prettyPrint One           = '1'
-prettyPrint SuperPosition = '*'
+-- double every element in a list of ints
+-- e.g. (doubleEveryElement [1,2,3]) == [2,4,6]
+doubleEveryElement :: [Int] -> [Int]
+doubleEveryElement []       = []
+doubleEveryElement (a : as) = (a * 2) : doubleEveryElement as
 
--- This part is about refactoring
--- We are going to emulate a change in a library
--- Instead of Lib.CCLib, import Lib.CCLib2
--- use `stack build`, and see if you can make your code
--- compile after this lib bump
--- You should only change code in this file
-checkoutItems :: [Item] -> Integer -> ResponseData
-checkoutItems items creditCard =
-    let
-        creditCardValid = validate creditCard
-        totPrice        = totalPrice items
-        amountString    = show totPrice
-        userResponse    = case creditCardValid of
-            False -> ResponseData
-                "Even though we value your creativity, we need an actual credit card"
-                Nothing
-            True -> ResponseData
-                (  "Thanks, this credit card will be drained of "
-                ++ amountString
-                ++ ",-"
-                )
-                (Just totPrice)
-    in
-        userResponse
+-- ok, writing a new recursive function every time is annoying
+-- let's write a generalized function for applying a transformation
+-- to every element of a list
+myMap :: (a -> b) -> [a] -> [b]
+myMap _ []       = []
+myMap f (a : as) = f a : myMap f as
+-- this function already exists in haskell, and is named `map`
+-- (there is also a more general `fmap` which can be used for
+-- more than just lists. For lists it is the same as `map`.)
 
-data ResponseData = ResponseData String (Maybe Integer)
+-- let's use our map function to reimplement the previous three functions
+-- how concisely can you write it?
+-- hint: for infix functions like + and *, you can wrap the operator and
+-- one operand in parantheses to create a partially applied function.
+-- e.g.
+--   (+ 5) is the same as (\x -> x + 5)
+--   (5 +) is the same as (\x -> 5 + x)
+add1WithMap :: [Int] -> [Int]
+add1WithMap as = map (+ 1) as
 
--- The 3 items in our web store
-data Item = Sega8Bit | Comodore64 | Atari2600
+-- use myMap above (or just map if you couldn't figure myMap out..)
+negateWithMap :: [Int] -> [Int]
+negateWithMap as = map negate as
 
+-- use myMap above (or just map if you couldn't figure myMap out..)
+doubleEveryElementWithMap :: [Int] -> [Int]
+doubleEveryElementWithMap as = map (* 2) as
 
-totalPrice :: [Item] -> Integer
-totalPrice = sum . map price
+-- double every other element in a list, starting with the first
+-- e.g. doubleEveryOtherElement [1,2,3,4,5] == [2,2,6,4,10]
+-- hint: map won't cut it
+doubleEveryOtherElement :: [Int] -> [Int]
+doubleEveryOtherElement []  = []
+doubleEveryOtherElement [a] = [a * 2]
+doubleEveryOtherElement (a1 : a2 : as) =
+  (a1 * 2) : a2 : (doubleEveryOtherElement as)
 
-price :: Item -> Integer
-price Sega8Bit   = 650
-price Comodore64 = 450
-price Atari2600  = 350
+doubleEveryOtherElementV2 :: [Int] -> [Int]
+doubleEveryOtherElementV2 as = zipWith doubleIfEvenIndex as [0..]
+  where
+    doubleIfEvenIndex a idx = if even idx then a * 2 else a
+
