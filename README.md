@@ -30,7 +30,7 @@
 
 Edit the code in `src/Part1.hs` and type 
 
-    stack test
+    ./runtests 1
 
 until Part 1 is green!
 
@@ -38,14 +38,9 @@ until Part 1 is green!
 
 Edit the code in `src/Part2.hs` and type
 
-    stack test
+    ./runtests 2
     
 until Part 2 is green!
 
-## Open `src/Part3.hs` in an editor
+## And so on an so forth until Part 7 is green!
 
-Edit the code in `src/Part3.hs` and type
-
-    stack test
-    
-until Part 3 is green!

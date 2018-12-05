@@ -13,9 +13,13 @@ import           Part7
 
 main = do
   t1 <- part1Tests
+  t2 <- part2Tests
+  t3 <- part3Tests
+  t4 <- part4Tests
+  t5 <- part5Tests
   t6 <- part6Tests
   t7 <- part7Tests
-  defaultMain $ testGroup "Haskell Workshop Unit Tests" [t1, t6, t7]
+  defaultMain $ testGroup "Haskell Workshop Unit Tests" [t1, t2, t3, t4, t5, t6, t7]
 
 part1Tests :: IO TestTree
 part1Tests = do
@@ -31,6 +35,9 @@ part1Units = H.testSpecs $ do
   helloWorldSpec
   addNrSpec
   isSevenSpec
+
+part2Tests :: IO TestTree
+part2Tests = H.testSpec "Part2 (unit tests)" $ do
   add1Spec
   negateSpec
   doubleSpec
@@ -39,9 +46,15 @@ part1Units = H.testSpecs $ do
   negateWithMapSpec
   doubleEveryElementWithMapSpec
   doubleEveryOtherElementSpec
+  
+part3Tests :: IO TestTree
+part3Tests = H.testSpec "Part3 (unit tests)" $ do
   noNegativesSpec
   myFilterSpec
   noNegativesUsingFilterSpec
+
+part4Tests :: IO TestTree
+part4Tests = H.testSpec "Part4 (unit tests)" $ do
   allTrueSpec
   anyTrueSpec
   myFoldrSpec
@@ -51,6 +64,9 @@ part1Units = H.testSpecs $ do
   myLengthSpec
   myFoldlSpec
   sumUsingFoldlSpec
+
+part5Tests :: IO TestTree
+part5Tests = H.testSpec "Part5 (unit tests)" $ do
   myAppendSpec
   myAppendUsingRightFoldSpec
   myConcatSpec
