@@ -2,7 +2,7 @@ name:                haskell-workshop
 version:             0.1.0.0
 github:              "mariatsji/haskell-workshop"
 license:             BSD3
-author:              "Sjur Millidahl"
+author:              "Sjur Millidahl, Fredrik Fossum"
 maintainer:          "sjur.millidahl@gmail.com"
 copyright:           "BSD-3-Clause"
 
