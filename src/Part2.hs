@@ -31,7 +31,7 @@ myMap f (a : as) = f a : myMap f as
 -- more than just lists. For lists it is the same as `map`.)
 
 -- let's use our map function to reimplement the previous three functions
--- how concisely can you write it?
+-- how concise can you write them?
 -- hint: for infix functions like + and *, you can wrap the operator and
 -- one operand in parantheses to create a partially applied function.
 -- e.g.

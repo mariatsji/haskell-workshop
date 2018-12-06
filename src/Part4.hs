@@ -34,13 +34,16 @@ anyTrueUsingFoldr :: [Bool] -> Bool
 anyTrueUsingFoldr as = foldr (||) False as
 
 -- sum Ints in a list
--- e.g. mySum [1,2,3] == 6
+-- e.g.
+--   mySum [] == 0
+--   mySum [1,2,3] == 6
 -- use a tail recursive helper function (we've named it "loop")
 mySum :: [Int] -> Int
-mySum as = loop 0 as
- where
-  loop acc []       = acc
-  loop acc (x : xs) = loop (acc + x) xs
+mySum as =
+  let loop :: Int -> [Int] -> Int
+      loop acc []       = acc
+      loop acc (x : xs) = loop (acc + x) xs
+  in  loop 0 as
 
 -- count elements in a list
 -- e.g. myLength [4,5,6] == 3

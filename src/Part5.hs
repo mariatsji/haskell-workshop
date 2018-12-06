@@ -37,6 +37,6 @@ flatMap f as = myConcat (myMap f as)
 -- create all possible pairs where the first element is from the first list
 -- and the second element is from the second list
 -- e.g. (allCombinations [1,2] ['a', 'b']) == [(1,'a'), (1,'b'), (2,'a'), (2,'b')]
--- use nested >>= calls
+-- hint: use >>=
 allCombinations :: [a] -> [b] -> [(a, b)]
 allCombinations as bs = as >>= \a -> bs >>= \b -> [(a, b)]
