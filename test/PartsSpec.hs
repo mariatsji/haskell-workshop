@@ -31,7 +31,7 @@ part1Tests = do
 -- Unit Tests
 part1Units :: IO [TestTree]
 part1Units = H.testSpecs $ do
-  greaterSpec
+  myMaxSpec
   helloWorldSpec
   addNrSpec
   isSevenSpec
@@ -48,7 +48,7 @@ part2Tests = H.testSpec "Part2 (unit tests)" $ do
   negateWithMapSpec
   doubleEveryElementWithMapSpec
   doubleEveryOtherElementSpec
-  
+
 part3Tests :: IO TestTree
 part3Tests = H.testSpec "Part3 (unit tests)" $ do
   noNegativesSpec
@@ -116,7 +116,7 @@ noNegativesProp :: [Int] -> Bool
 noNegativesProp k =
   let l= noNegatives k
   in case l of [] -> True
-               (x:xs)  -> x >= 0 && noNegativesProp xs  
+               (x:xs)  -> x >= 0 && noNegativesProp xs
 
 helloWorldSpec :: Spec
 helloWorldSpec = describe "helloWorld" $ do
@@ -152,14 +152,14 @@ capitalizeSpec = describe "capitalize" $ do
     capitalize "hello" `shouldBe` "Hello"
   it "capitalizes the string \"TECH\" to \"TECH\"" $ do
     capitalize "TECH" `shouldBe` "TECH"
-  
+
 
 add1Spec :: Spec
 add1Spec = describe "add1ToEveryElement" $ do
   it "adds 1 to every element of an empty list []" $ do
     add1ToEveryElement [] `shouldBe` []
   it "adds 1 to every element of the list [2,6,-1]" $ do
-    add1ToEveryElement [2, 6, -1] `shouldBe` [3, 7, 0] 
+    add1ToEveryElement [2, 6, -1] `shouldBe` [3, 7, 0]
 
 negateSpec :: Spec
 negateSpec = describe "negateEveryElement" $ do
@@ -201,7 +201,7 @@ doubleEveryOtherElementSpec = describe "doubleEveryOtherElement" $ do
   it "doubles every element starting with the first in the empty list []" $ do
     doubleEveryOtherElement [] `shouldBe` []
   it "doubles every element starting with the first in the list [2, 1, 3, 1]" $ do
-    doubleEveryOtherElement [2, 1, 3, 1] `shouldBe` [4, 1, 6, 1] 
+    doubleEveryOtherElement [2, 1, 3, 1] `shouldBe` [4, 1, 6, 1]
 
 noNegativesSpec :: Spec
 noNegativesSpec = describe "noNegatives" $ do
@@ -226,20 +226,20 @@ noNegativesUsingFilterSpec = describe "noNegativesUsingFilter" $ do
 
 allTrueSpec :: Spec
 allTrueSpec = describe "allTrue" $ do
-  it "sais all is true in the empty list []" $ do
+  it "says all is true in the empty list []" $ do
     allTrue [] `shouldBe` True
-  it "sais True given the list [True, True]" $ do
+  it "says True given the list [True, True]" $ do
     allTrue [True, True] `shouldBe` True
-  it "sais False given the list [True, False] " $ do
+  it "says False given the list [True, False] " $ do
     allTrue [True, False] `shouldBe` False
 
 anyTrueSpec :: Spec
 anyTrueSpec = describe "anyTrue" $ do
-  it "sais False to the empty list []" $ do
+  it "says False to the empty list []" $ do
     anyTrue [] `shouldBe` False
-  it "sais False given the list [False, False]" $ do
+  it "says False given the list [False, False]" $ do
     anyTrue [False, False] `shouldBe` False
-  it "sais True given the list [True, False]" $ do
+  it "says True given the list [True, False]" $ do
     anyTrue [True, False] `shouldBe` True
 
 myFoldrSpec :: Spec
@@ -251,27 +251,27 @@ myFoldrSpec = describe "myFoldr" $ do
 
 allTrueUsingFoldrSpec :: Spec
 allTrueUsingFoldrSpec = describe "allTrueUsingFoldr" $ do
-  it "sais True for the empty list []" $ do
+  it "says True for the empty list []" $ do
     allTrueUsingFoldr [] `shouldBe` True
-  it "sais False for the list [True, False]" $ do
+  it "says False for the list [True, False]" $ do
     allTrueUsingFoldr [True, False] `shouldBe` False
-  it "sais True for the list [True, True]" $ do
+  it "says True for the list [True, True]" $ do
     allTrueUsingFoldr [True, True] `shouldBe` True
 
 anyTrueUsingFoldrSpec :: Spec
 anyTrueUsingFoldrSpec = describe "anyTrueUsingFoldr" $ do
-  it "sais False for the empty list []" $ do
+  it "says False for the empty list []" $ do
     anyTrueUsingFoldr [] `shouldBe` False
-  it "sais False for the list [False, False]" $ do
+  it "says False for the list [False, False]" $ do
     anyTrueUsingFoldr [] `shouldBe` False
-  it "sais True for the list [False, True, False]" $ do
+  it "says True for the list [False, True, False]" $ do
     anyTrueUsingFoldr [False, True, False] `shouldBe` True
 
 mySumSpec :: Spec
 mySumSpec = describe "mySum" $ do
-  it "sais 0 for the empty list []" $ do
+  it "says 0 for the empty list []" $ do
     mySum [] `shouldBe` 0
-  it "sais -3 for the list [-2,-1]" $ do
+  it "says -3 for the list [-2,-1]" $ do
     mySum [-2,-1] `shouldBe` (-3)
 
 myLengthSpec :: Spec
@@ -326,7 +326,7 @@ flatMapSpec = describe "flatMap" $ do
     flatMap (const ([] :: [Char])) [] `shouldBe` []
   it "flatMaps a list [1,2,3] with the function \\i -> i : [1] to the list [1,1,2,1,3,1]" $ do
     flatMap (\i -> i : [1]) [1,2,3] `shouldBe` [1,1,2,1,3,1]
-    
+
 allCombinationsSpec :: Spec
 allCombinationsSpec = describe "allCombinationsSpec" $ do
   it "finds all combinations between the list [1,2,3] and [] to be []" $ do
@@ -353,11 +353,11 @@ bitSpec = describe "bit datatype" $ do
   it "represents the one bit" $ do
     prettyPrint One `shouldBe` '1'
 
-greaterSpec :: Spec
-greaterSpec = describe "greater of two integer numbers" $ do
-  it "sais 4 is greater than 3" $ do
-    greater 4 3 `shouldBe` 4
-    greater 3 4 `shouldBe` 4
+myMaxSpec :: Spec
+myMaxSpec = describe "myMax of two integer numbers" $ do
+  it "says 4 is myMax than 3" $ do
+    myMax 4 3 `shouldBe` 4
+    myMax 3 4 `shouldBe` 4
 
 refactorSpec :: Spec
 refactorSpec = describe "Part6 - refactor" $ do

@@ -3,8 +3,9 @@ module Part1 where
 import           Data.Char                      ( toUpper )
 
 -- return the greater of two natural numbers
-greater :: Int -> Int -> Int
-greater x y = if x > y then x else y
+myMax :: Int -> Int -> Int
+myMax x y = if x > y then x else y
+-- this function already exists as `max` in haskell.
 
 -- given two Floats, adds these together, resulting in another Float
 add :: Float -> Float -> Float
@@ -32,8 +33,20 @@ helloWorld name = "Hello, " ++ name ++ "!"
 -- This syntax be used both to construct new lists, and to pattern
 -- match on existing lists.
 
+-- Return true if list is empty
+-- e.g.
+--   isEmpty [] == True
+--   isEmpty [1] == False
+isEmpty :: [a] -> Bool
+isEmpty [] = True
+isEmpty _ = False
+-- this function already exists, and is called `null`.
+
 -- Transform the first letter of a word to upper case
--- use the function `toUpper`
+-- use the function `toUpper`. Do not modify remaining letters.
+-- e.g.
+--   capitalize "sjur" == "Sjur"
+--   capitalize "FREDRIK" == "FREDRIK"
 capitalize :: String -> String
 capitalize []       = []
 capitalize (a : as) = toUpper a : as
