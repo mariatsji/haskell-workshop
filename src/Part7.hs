@@ -34,6 +34,3 @@ compressString (x : xs) =
         len    = length streak
         lenS   = if len > 1 then show len ++ [x] else streak
     in  lenS ++ compressString streakTail
-
-
-

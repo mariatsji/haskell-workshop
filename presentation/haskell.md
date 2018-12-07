@@ -19,6 +19,33 @@ author: FINN.no
 ### Part 1
 
 
+### REPL
+
+    $ stack repl ./src/Part1.hs
+    (...)
+    *Part1> 
+
+
+### Unloading and Loading
+
+    *Loaded Modules> :l
+    Ok, no modules loaded.
+    Prelude>
+
+    Prelude> :l Part1
+    Ok, one module loaded.
+    *Part1>
+
+
+### Evaluating values and types
+
+    >1 + 1
+    2
+
+    >:t 1
+    1 + 1 :: Num a => a
+
+
 ### create a function
 
 ```haskell
@@ -72,17 +99,6 @@ isNine i = if i == 9
 You must have an else
 
 
-### let .. in expressions
-
-```haskell
-cylVolume :: Float -> Float -> Float
-cylVolume diam h =
-  let rad = diam / 2
-      area = pi * rad^2
-  in area * h
-```
-
-
 ### lists
 
 ```haskell
@@ -94,34 +110,18 @@ concat as bs = as ++ bs
 ```
 
 
-### REPL
-
-    $ stack repl ./src/Part1.hs
-    (...)
-    *Part1> 
-
-
-### Unloading and Loading
-
-    *Loaded Modules> :l
-    Ok, no modules loaded.
-    Prelude>
-
-    Prelude> :l Part1
-    Ok, one module loaded.
-    *Part1>
-
-
-### Evaluating values and types
-
-    >1 + 1
-    2
-
-    >:t 1
-    1 + 1 :: Num a => a
-
-
 ### Part 2 - 5
+
+
+### let .. in expressions
+
+```haskell
+cylVolume :: Float -> Float -> Float
+cylVolume diam h =
+  let rad = diam / 2
+      area = pi * rad^2
+  in area * h
+```
 
 
 ### Recursion on lists
