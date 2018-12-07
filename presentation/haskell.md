@@ -4,7 +4,7 @@ author: FINN.no
 ...
 
 
-![](/Users/sjumilli//haskell/haskell-workshop/presentation/images/haskell-workshop.png)
+![](./images/haskell-workshop.png)
 
 
 
