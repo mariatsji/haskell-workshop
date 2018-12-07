@@ -35,6 +35,8 @@ part1Units = H.testSpecs $ do
   helloWorldSpec
   addNrSpec
   isSevenSpec
+  isEmptySpec
+  capitalizeSpec
 
 part2Tests :: IO TestTree
 part2Tests = H.testSpec "Part2 (unit tests)" $ do
@@ -134,6 +136,23 @@ isSevenSpec = describe "isSeven" $ do
     isSeven 0 `shouldBe` False
   it "checks that a number is 7 using 7" $ do
     isSeven 7 `shouldBe` True
+
+isEmptySpec :: Spec
+isEmptySpec = describe "isEmpty" $ do
+  it "checks that an empty list is empty" $ do
+    isEmpty [] `shouldBe` True
+  it "checks that a non-empty list is not empty" $ do
+    isEmpty [1,2,3] `shouldBe` False
+
+capitalizeSpec :: Spec
+capitalizeSpec = describe "capitalize" $ do
+  it "capitalizes the empty list to the empty list" $ do
+    capitalize "" `shouldBe` ""
+  it "capitalizes the string \"hello\" to \"Hello\"" $ do
+    capitalize "hello" `shouldBe` "Hello"
+  it "capitalizes the string \"TECH\" to \"TECH\"" $ do
+    capitalize "TECH" `shouldBe` "TECH"
+  
 
 add1Spec :: Spec
 add1Spec = describe "add1ToEveryElement" $ do
