@@ -116,57 +116,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="part-1" class="slide level3">
 <h3>Part 1</h3>
 </section>
-<section id="create-a-function" class="slide level3">
-<h3>create a function</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">isPrime ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb1-2" title="2">isPrime <span class="dv">0</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb1-3" title="3">isPrime <span class="dv">1</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb1-4" title="4">isPrime <span class="dv">2</span> <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb1-5" title="5">isPrime <span class="dv">3</span> <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb1-6" title="6">isPrime <span class="dv">4</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb1-7" title="7">isPrime <span class="dv">5</span> <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb1-8" title="8">isPrime <span class="dv">6</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb1-9" title="9">isPrime <span class="dv">7</span> <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
-</section>
-<section id="create-a-function-2" class="slide level3">
-<h3>create a function 2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></a>
-<a class="sourceLine" id="cb2-2" title="2">myFunction    a      b   <span class="fu">=</span>  (a <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">*</span> b <span class="fu">^</span> <span class="dv">2</span></a></code></pre></div>
-<p>Applying arguments</p>
-<pre><code>&gt; myFunction 1 2
-8</code></pre>
-</section>
-<section id="curried-signatures" class="slide level3">
-<h3>Curried signatures</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>)</a></code></pre></div>
-<pre><code>&gt;:t myFunction 1
-myFunction 1 :: Int -&gt; Int</code></pre>
-</section>
-<section id="everything-is-an-expression" class="slide level3">
-<h3>Everything is an expression</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1"><span class="ot">isNine ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb7-2" title="2">isNine i <span class="fu">=</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">9</span></a>
-<a class="sourceLine" id="cb7-3" title="3">  <span class="kw">then</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb7-4" title="4">  <span class="kw">else</span> <span class="dt">False</span></a></code></pre></div>
-<p>You must have an else</p>
-</section>
-<section id="let-..-in-expressions" class="slide level3">
-<h3>let .. in expressions</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" title="1"><span class="ot">cylVolume ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></a>
-<a class="sourceLine" id="cb8-2" title="2">cylVolume diam h <span class="fu">=</span></a>
-<a class="sourceLine" id="cb8-3" title="3">  <span class="kw">let</span> rad <span class="fu">=</span> diam <span class="fu">/</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb8-4" title="4">      area <span class="fu">=</span> <span class="fu">pi</span> <span class="fu">*</span> rad<span class="fu">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb8-5" title="5">  <span class="kw">in</span> area <span class="fu">*</span> h</a></code></pre></div>
-</section>
-<section id="lists" class="slide level3">
-<h3>lists</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="ot">listOfInts ::</span> [<span class="dt">Int</span>]</a>
-<a class="sourceLine" id="cb9-2" title="2">listOfInts  <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb9-3" title="3"></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="fu">concat</span><span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="fu">concat</span> as bs <span class="fu">=</span> as <span class="fu">++</span> bs</a></code></pre></div>
-</section>
 <section id="repl" class="slide level3">
 <h3>REPL</h3>
 <pre><code>$ stack repl ./src/Part1.hs
@@ -191,8 +140,59 @@ Ok, one module loaded.
 &gt;:t 1
 1 + 1 :: Num a =&gt; a</code></pre>
 </section>
+<section id="create-a-function" class="slide level3">
+<h3>create a function</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="ot">isPrime ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb4-2" title="2">isPrime <span class="dv">0</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb4-3" title="3">isPrime <span class="dv">1</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb4-4" title="4">isPrime <span class="dv">2</span> <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb4-5" title="5">isPrime <span class="dv">3</span> <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb4-6" title="6">isPrime <span class="dv">4</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb4-7" title="7">isPrime <span class="dv">5</span> <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb4-8" title="8">isPrime <span class="dv">6</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb4-9" title="9">isPrime <span class="dv">7</span> <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
+</section>
+<section id="create-a-function-2" class="slide level3">
+<h3>create a function 2</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb5-2" title="2">myFunction    a      b   <span class="fu">=</span>  (a <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">*</span> b <span class="fu">^</span> <span class="dv">2</span></a></code></pre></div>
+<p>Applying arguments</p>
+<pre><code>&gt; myFunction 1 2
+8</code></pre>
+</section>
+<section id="curried-signatures" class="slide level3">
+<h3>Curried signatures</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" title="1"><span class="ot">myFunction ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>)</a></code></pre></div>
+<pre><code>&gt;:t myFunction 1
+myFunction 1 :: Int -&gt; Int</code></pre>
+</section>
+<section id="everything-is-an-expression" class="slide level3">
+<h3>Everything is an expression</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb10-1" title="1"><span class="ot">isNine ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb10-2" title="2">isNine i <span class="fu">=</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">9</span></a>
+<a class="sourceLine" id="cb10-3" title="3">  <span class="kw">then</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb10-4" title="4">  <span class="kw">else</span> <span class="dt">False</span></a></code></pre></div>
+<p>You must have an else</p>
+</section>
+<section id="lists" class="slide level3">
+<h3>lists</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb11-1" title="1"><span class="ot">listOfInts ::</span> [<span class="dt">Int</span>]</a>
+<a class="sourceLine" id="cb11-2" title="2">listOfInts  <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb11-3" title="3"></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="fu">concat</span><span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="fu">concat</span> as bs <span class="fu">=</span> as <span class="fu">++</span> bs</a></code></pre></div>
+</section>
 <section id="part-2---5" class="slide level3">
 <h3>Part 2 - 5</h3>
+</section>
+<section id="let-..-in-expressions" class="slide level3">
+<h3>let .. in expressions</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb12-1" title="1"><span class="ot">cylVolume ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></a>
+<a class="sourceLine" id="cb12-2" title="2">cylVolume diam h <span class="fu">=</span></a>
+<a class="sourceLine" id="cb12-3" title="3">  <span class="kw">let</span> rad <span class="fu">=</span> diam <span class="fu">/</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb12-4" title="4">      area <span class="fu">=</span> <span class="fu">pi</span> <span class="fu">*</span> rad<span class="fu">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb12-5" title="5">  <span class="kw">in</span> area <span class="fu">*</span> h</a></code></pre></div>
 </section>
 <section id="recursion-on-lists" class="slide level3">
 <h3>Recursion on lists</h3>
