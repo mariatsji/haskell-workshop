@@ -28,11 +28,6 @@ myMap = undefined
 
 -- let's use our map function to reimplement the previous three functions
 -- how concise can you write them?
--- hint: for infix functions like + and *, you can wrap the operator and
--- one operand in parantheses to create a partially applied function.
--- e.g.
---   (+ 5) is the same as (\x -> x + 5)
---   (5 +) is the same as (\x -> 5 + x)
 add1WithMap :: [Int] -> [Int]
 add1WithMap = undefined
 

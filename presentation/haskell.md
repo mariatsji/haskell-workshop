@@ -10,17 +10,17 @@ author: FINN.no
 
 ### Haskell
 
-- Haskell / GHC
 - Purely functional
 - Statically Typed
 - Lazy
+- GHC: Glasgow Haskell Compiler
 
 
 ### REPL
 
     $ stack repl ./src/Part1.hs
     (...)
-    *Part1> 
+    *Part1>
 
 
 ### Unloading and Loading
@@ -40,8 +40,7 @@ author: FINN.no
     2
 
     >:t 1
-    1 + 1 :: Num a => a
-
+    1 :: Num a => a
 
 ### create a function
 
@@ -81,11 +80,10 @@ myFunction :: Int -> Int -> Int
 myFunction    a      b   =  (a + 1) * b ^ 2
 ```
 
-Applying arguments
+Applying the function
 
     > myFunction 1 2
     8
-
 
 ### Everything is an expression
 
@@ -125,26 +123,56 @@ concat as bs = as ++ bs
     ./runtests 1
 
 
-### let .. in expressions
+### Higher order functions
+
+Functions are values and can be passed as arguments to, and be returned from, other functions.
 
 ```haskell
-cylVolume :: Float -> Float -> Float
-cylVolume diam h =
-  let rad = diam / 2
-      area = pi * rad^2
-  in area * h
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f (f x)
 ```
-
 
 ### Recursion on lists
 
+There are no for/while loops in haskell.
+
 ```haskell
-uppercase :: [Char] -> [Char]
-uppercase [] = []
-uppercase (x:xs) = toUpper x :: uppercase xs
+loopThrough :: [a] -> [a]
+loopThrough []       = []
+loopThrough (a : as) = a : loopThrough as
 ```
 
-`x` is a `Char` but `xs` is a `[Char]`
+Recursively looping through a list and changing nothing.
+
+### Infix functions 1
+You can turn an infix function into a prefix function by wrapping it in parantheses.
+
+This is required to pass it as an argument.
+
+```haskell
+(+) 1 2 == 1 + 2
+```
+
+
+### Infix functions 2
+You can include one operand inside the parantheses to create a partially applied function.
+```haskell
+(/ 2) 1 == 1 / 2
+
+(2 /) 1 == 2 / 1
+```
+
+### let .. in expressions
+
+```haskell
+cylinderVolume :: Float -> Float -> Float
+cylinderVolume diameter height =
+  let radius = diameter / 2
+      area = pi * radius ^ 2
+  in area * height
+```
+
+Variables can not be reassigned.
 
 
 ### Exercise time :
@@ -157,6 +185,28 @@ uppercase (x:xs) = toUpper x :: uppercase xs
     ./runtests 3
 
 
+### Anonymous functions (lambda)
+
+```haskell
+\a b c -> 2 * a + c
+```
+
+```haskell
+filter (\x -> x ^ 2 > 5) [1,2,3,4]
+```
+
+Sometimes more convenient than creating a named function, or partially applying an existing function.
+
+
+### Unused variables
+
+Use an underscore to tell the compiler (and yourself) that an argument is intentionally not used.
+
+```haskell
+\a _ c -> 2 * a + c
+```
+
+
 ### Exercise time :
 
     ./runtests 4
@@ -164,7 +214,7 @@ uppercase (x:xs) = toUpper x :: uppercase xs
 
 ### Exercise time :
 
-    ./runtests 5    
+    ./runtests 5
 
 
 ### Creating a type
