@@ -16,9 +16,6 @@ author: FINN.no
 - Lazy
 
 
-### Part 1
-
-
 ### REPL
 
     $ stack repl ./src/Part1.hs
@@ -61,6 +58,22 @@ isPrime 7 = True
 ```
 
 
+### Curried signatures
+
+```haskell
+myFunction :: Int -> Int -> Int
+              ^arg0  ^arg1  ^res
+```
+```haskell
+myFunction :: Int -> (Int -> Int)
+              ^arg0  ^res
+```
+
+    >:t myFunction 1
+    myFunction 1 :: Int -> Int
+
+
+
 ### create a function 2
 
 ```haskell
@@ -72,19 +85,6 @@ Applying arguments
 
     > myFunction 1 2
     8
-
-
-### Curried signatures
-
-```haskell
-myFunction :: Int -> Int -> Int
-```
-```haskell
-myFunction :: Int -> (Int -> Int)
-```
-
-    >:t myFunction 1
-    myFunction 1 :: Int -> Int
 
 
 ### Everything is an expression
@@ -110,7 +110,19 @@ concat as bs = as ++ bs
 ```
 
 
-### Part 2 - 5
+### Tips
+
+- Indentation matters
+- Slack : #finn-haskell-workshop
+- Examples-folder
+- README.md
+- presentation/CheatSheet.pdf
+- presentation/index.html
+
+
+### Exercise time :
+
+    ./runtests 1
 
 
 ### let .. in expressions
@@ -135,29 +147,24 @@ uppercase (x:xs) = toUpper x :: uppercase xs
 `x` is a `Char` but `xs` is a `[Char]`
 
 
-### Functions over lists
+### Exercise time :
 
-```haskell
-inc :: [Int] -> [Int]
-inc numbers = map (+1) numbers
-
-inc2 :: [Int] -> [Int]
-inc2 numbers = map (\x -> x + 1) numbers
-```
+    ./runtests 2
 
 
-### Functions over lists 2
+### Exercise time :
 
-```haskell
-firstFive :: [a] -> [a]
-firstFive as = take 5 as
-
-onlyEven :: [Int] -> [Int]
-onlyEven xs = filter even xs
-```
+    ./runtests 3
 
 
-### Part 6
+### Exercise time :
+
+    ./runtests 4
+
+
+### Exercise time :
+
+    ./runtests 5    
 
 
 ### Creating a type
@@ -172,7 +179,8 @@ safe Green  = True
 ```
 
 
-### What to do
+### Part 6
 
-    git clone https://github.com/mariatsji/haskell-workshop
-    open README.md
+- Tests are green
+- Keep them green after bumping to Lib.CCLib2
+- Expand the datatype Bit as instructed
