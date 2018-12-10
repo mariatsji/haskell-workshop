@@ -6,13 +6,13 @@ import           Lib.CCLib
 -- .. but you have just discovered quantum computing!
 -- So you should therefore expand the type with a new data constructor : SuperPosition
 -- Make this change in the data definition below :
-data Bit = Zero | One | SuperPosition
+data Bit = Zero | One
 
 -- what should the new SuperPosition case look like? You decide!
 prettyPrint :: Bit -> Char
 prettyPrint Zero          = '0'
 prettyPrint One           = '1'
-prettyPrint SuperPosition = '*'
+
 
 -- This part is about refactoring
 -- We are going to emulate a change in a library

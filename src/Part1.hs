@@ -4,24 +4,24 @@ import           Data.Char                      ( toUpper )
 
 -- return the greater of two natural numbers
 myMax :: Int -> Int -> Int
-myMax x y = if x > y then x else y
+myMax = undefined
 -- this function already exists as `max` in haskell.
 
 -- given two Floats, adds these together, resulting in another Float
 add :: Float -> Float -> Float
-add a b = a + b
+add = undefined
 
 -- check if a number is `7`
 -- e.g.
 --   isSeven 7 == True
 --   isSeven 6 == False
 isSeven :: Integer -> Bool
-isSeven i = i == 7
+isSeven = undefined
 
 -- given a name (String) as input should create a personalized greeting
 -- e.g. helloWorld "Jens" == "Hello, Jens!"
 helloWorld :: String -> String
-helloWorld name = "Hello, " ++ name ++ "!"
+helloWorld = undefined
 -- String is just an alias for a list of Char
 
 -- the standard list in haskell is a singly linked list.
@@ -38,8 +38,7 @@ helloWorld name = "Hello, " ++ name ++ "!"
 --   isEmpty [] == True
 --   isEmpty [1] == False
 isEmpty :: [a] -> Bool
-isEmpty [] = True
-isEmpty _ = False
+isEmpty = undefined
 -- this function already exists, and is called `null`.
 
 -- Transform the first letter of a word to upper case
@@ -48,5 +47,4 @@ isEmpty _ = False
 --   capitalize "sjur" == "Sjur"
 --   capitalize "FREDRIK" == "FREDRIK"
 capitalize :: String -> String
-capitalize []       = []
-capitalize (a : as) = toUpper a : as
+capitalize = undefined

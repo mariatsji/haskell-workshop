@@ -7,19 +7,18 @@ import Part2
 -- e.g. [1,2,3] ++ [4,5,6] == [1,2,3,4,5,6]
 -- hint: recursively prepend
 myAppend :: [a] -> [a] -> [a]
-myAppend []       bs = bs
-myAppend (a : as) bs = a : myAppend as bs
+myAppend = undefined
 
 -- Your implementation of append might look familiar
 -- Try reimplementing it using a right fold
 myAppendUsingRightFold :: [a] -> [a] -> [a]
-myAppendUsingRightFold as bs = foldr (:) bs as
+myAppendUsingRightFold = undefined
 
 -- concatenate a list of lists into a single list
 -- e.g. (concat [[1,2],[3,4],[5,6]]) == [1,2,3,4,5,6]
 -- tip: use the append function (`myAppend` or `(++)`) introduced earlier
 myConcat :: [[a]] -> [a]
-myConcat = foldr (++) []
+myConcat = undefined
 -- this operation is also known as `join` in haskell
 -- also known as "flatten" in some languages
 
@@ -28,7 +27,7 @@ myConcat = foldr (++) []
 -- e.g. (flatMap (\x -> [x,x]) [1,2,3]) == [1,1,2,2,3,3]
 -- notice the similarity to the signature of the `map` function
 flatMap :: (a -> [b]) -> [a] -> [b]
-flatMap f as = myConcat (myMap f as)
+flatMap = undefined
 -- this function is known as "bind" in haskell and is written >>=, which is an infix function
 -- however, the order of the first two arguments are reversed
 -- so the example above becomes: ([1,2,3] >>= (\x -> [x,x])) == [1,1,2,2,3,3]
@@ -39,4 +38,4 @@ flatMap f as = myConcat (myMap f as)
 -- e.g. (allCombinations [1,2] ['a', 'b']) == [(1,'a'), (1,'b'), (2,'a'), (2,'b')]
 -- hint: use >>=
 allCombinations :: [a] -> [b] -> [(a, b)]
-allCombinations as bs = as >>= \a -> bs >>= \b -> [(a, b)]
+allCombinations = undefined

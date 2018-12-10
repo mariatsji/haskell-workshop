@@ -28,6 +28,28 @@ part1Tests = do
       tg2 = testGroup "Part1 (property tests" part1Properties
   return (testGroup "Part1" [tg1, tg2])
 
+part2Tests :: IO TestTree
+part2Tests = do
+  units <- part2Units
+  let tg1 = testGroup "Part2 (unit tests)" units
+      tg2 = testGroup "Part2 (property tests" part2Properties
+  return (testGroup "Part2" [tg1, tg2])
+
+part3Tests :: IO TestTree
+part3Tests = do
+  units <- part3Units
+  let tg1 = testGroup "Part3 (unit tests)" units
+      tg2 = testGroup "Part3 (property tests" part3Properties
+  return (testGroup "Part3" [tg1, tg2])
+  
+part4Tests :: IO TestTree
+part4Tests = do
+  units <- part4Units
+  let tg1 = testGroup "Part4 (unit tests)" units
+      tg2 = testGroup "Part4 (property tests" part4Properties
+  return (testGroup "Part4" [tg1, tg2])
+  
+
 -- Unit Tests
 part1Units :: IO [TestTree]
 part1Units = H.testSpecs $ do
@@ -38,8 +60,8 @@ part1Units = H.testSpecs $ do
   isEmptySpec
   capitalizeSpec
 
-part2Tests :: IO TestTree
-part2Tests = H.testSpec "Part2 (unit tests)" $ do
+part2Units :: IO [TestTree]
+part2Units = H.testSpecs $ do
   add1Spec
   negateSpec
   doubleSpec
@@ -49,14 +71,14 @@ part2Tests = H.testSpec "Part2 (unit tests)" $ do
   doubleEveryElementWithMapSpec
   doubleEveryOtherElementSpec
 
-part3Tests :: IO TestTree
-part3Tests = H.testSpec "Part3 (unit tests)" $ do
+part3Units :: IO [TestTree]
+part3Units = H.testSpecs $ do
   noNegativesSpec
   myFilterSpec
   noNegativesUsingFilterSpec
 
-part4Tests :: IO TestTree
-part4Tests = H.testSpec "Part4 (unit tests)" $ do
+part4Units :: IO [TestTree]
+part4Units = H.testSpecs $ do
   allTrueSpec
   anyTrueSpec
   myFoldrSpec
@@ -91,10 +113,20 @@ part1Properties :: [TestTree]
 part1Properties =
   [ QC.testProperty "helloWorld (property tests)" greetStringProp
   , QC.testProperty "add (property tests)" addProp
-  , QC.testProperty "myLength (property tests)" countListProp
+  ]
+
+part2Properties :: [TestTree]
+part2Properties =
+  [ QC.testProperty "myMap (property tests)" myMapProp ]
+
+part3Properties :: [TestTree]
+part3Properties = 
+  [ QC.testProperty "noNegativesProp (property tests)" noNegativesProp ]
+
+part4Properties :: [TestTree]
+part4Properties = 
+  [ QC.testProperty "myLength (property tests)" countListProp
   , QC.testProperty "mySum (property tests)" sumListProp
-  , QC.testProperty "myMap (property tests)" myMapProp
-  , QC.testProperty "noNegativesProp (property tests)" noNegativesProp
   ]
 
 countListProp :: [Int] -> Bool
@@ -370,18 +402,18 @@ refactorSpec = describe "Part6 - refactor" $ do
     price `shouldBe` (Just 1100)
 
 takeSpec :: Spec
-takeSpec = describe "takeUntil" $ do
+takeSpec = describe "myTakeUntil" $ do
   it "takes until a predicate becomes false for (<3) [1,2,3,4,5] " $ do
-    takeUntil (<3) [1 .. 5] `shouldBe` [1,2]
+    myTakeUntil (<3) [1 .. 5] `shouldBe` [1,2]
   it "takes nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
-    takeUntil (>3) [1 .. 5] `shouldBe` []
+    myTakeUntil (>3) [1 .. 5] `shouldBe` []
 
 dropSpec :: Spec
-dropSpec = describe "dropUntil" $ do
+dropSpec = describe "myDropUntil" $ do
   it "drops until a predicate becomes false for (<3) [1,2,3,4,5]" $ do
-    dropUntil (<3) [1 .. 5] `shouldBe` [3,4,5]
+    myDropUntil (<3) [1 .. 5] `shouldBe` [3,4,5]
   it "drops nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
-    dropUntil (>3) [1 .. 5] `shouldBe` [1 .. 5]
+    myDropUntil (>3) [1 .. 5] `shouldBe` [1 .. 5]
 
 compressorSpec :: Spec
 compressorSpec = describe "compress String" $ do
