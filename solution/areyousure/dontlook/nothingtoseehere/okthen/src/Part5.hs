@@ -10,7 +10,7 @@ myAppendUsingRightFold :: [a] -> [a] -> [a]
 myAppendUsingRightFold as bs = foldr (:) bs as
 
 myConcat :: [[a]] -> [a]
-myConcat = foldr (++) []
+myConcat l = foldr (++) [] l
 
 flatMap :: (a -> [b]) -> [a] -> [b]
 flatMap f as = myConcat (myMap f as)

@@ -84,10 +84,9 @@ part4Units = H.testSpecs $ do
   myFoldrSpec
   allTrueUsingFoldrSpec
   anyTrueUsingFoldrSpec
-  mySumSpec
-  myLengthSpec
   myFoldlSpec
   sumUsingFoldlSpec
+  lengthUsingFoldlSpec
 
 part5Tests :: IO TestTree
 part5Tests = H.testSpec "Part5 (unit tests)" $ do
@@ -124,19 +123,10 @@ part3Properties =
   [ QC.testProperty "noNegativesProp (property tests)" noNegativesProp ]
 
 part4Properties :: [TestTree]
-part4Properties = 
-  [ QC.testProperty "myLength (property tests)" countListProp
-  , QC.testProperty "mySum (property tests)" sumListProp
-  ]
-
-countListProp :: [Int] -> Bool
-countListProp xs = myLength xs == (fromIntegral . length $ xs)
+part4Properties = [ ]
 
 addProp :: (Float, Float) -> Bool
 addProp (a, b) = add a b == a + b
-
-sumListProp :: [Int] -> Bool
-sumListProp xs = mySum xs == foldl (+) 0 xs
 
 greetStringProp :: String -> Bool
 greetStringProp s = length (helloWorld s) > length s
@@ -298,20 +288,6 @@ anyTrueUsingFoldrSpec = describe "anyTrueUsingFoldr" $ do
     anyTrueUsingFoldr [] `shouldBe` False
   it "says True for the list [False, True, False]" $ do
     anyTrueUsingFoldr [False, True, False] `shouldBe` True
-
-mySumSpec :: Spec
-mySumSpec = describe "mySum" $ do
-  it "says 0 for the empty list []" $ do
-    mySum [] `shouldBe` 0
-  it "says -3 for the list [-2,-1]" $ do
-    mySum [-2,-1] `shouldBe` (-3)
-
-myLengthSpec :: Spec
-myLengthSpec = describe "myLength" $ do
-  it "counts the length of [] to 0" $ do
-    myLength [] `shouldBe` 0
-  it "counts the length of [2,5,2,3,6,3,4] to 7" $ do
-    myLength [2, 5, 2, 3, 6, 3, 4] `shouldBe` 7
 
 myFoldlSpec :: Spec
 myFoldlSpec = describe "myFoldl" $ do
