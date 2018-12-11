@@ -34,6 +34,8 @@ anyTrueUsingFoldr = undefined
 -- e.g. myFoldl f 1 [2,3,4] == f (f (f 1 2) 3) 4
 myFoldl :: (b -> a -> b) -> b -> [a] -> b
 myFoldl = undefined
+-- as you may have guessed, this function already exists in haskell
+-- and is called `foldl` ("fold left")
 
 -- ok, now let's rewrite sum and length using a left fold.
 sumUsingFoldl :: [Int] -> Int
