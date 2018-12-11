@@ -6,7 +6,7 @@ noNegatives :: [Int] -> [Int]
 noNegatives = undefined
 
 -- create a generalized function to remove elements based on a
--- predicate function. Elements that return False when applied to
+-- predicate function. Elements that return False when passed to
 -- the predicate are removed.
 -- e.g. (myFilter (==1) [1,2,3,2,1]) == [1,1]
 myFilter :: (a -> Bool) -> [a] -> [a]
