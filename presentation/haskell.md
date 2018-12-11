@@ -132,11 +132,11 @@ Recursively looping through a list and changing nothing.
 
 ### Unloading and Loading
 
-    *Loaded Modules> :l
+    *Loaded Modules> :load
     Ok, no modules loaded.
     Prelude>
 
-    Prelude> :l Part1
+    Prelude> :load Part1
     Ok, one module loaded.
     *Part1>
 
@@ -146,7 +146,7 @@ Recursively looping through a list and changing nothing.
     >1 + 1
     2
 
-    >:t 1
+    >:ttype 1
     1 :: Num a => a
 
 
