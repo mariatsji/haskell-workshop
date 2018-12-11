@@ -32,22 +32,6 @@ author: FINN.no
 - See README.md for how to install
 
 
-### Curried signatures
-
-```haskell
-myFunction :: Int -> Int -> Int
-              ^arg0  ^arg1  ^res
-```
-```haskell
-myFunction :: Int -> (Int -> Int)
-              ^arg0  ^res
-```
-
-    >:t myFunction 1
-    myFunction 1 :: Int -> Int
-
-
-
 ### Create a function
 
 ```haskell
@@ -61,14 +45,28 @@ Applying the function
     8
 
 
-### Create a function 2
+### Curried signatures
+
+```haskell
+myFunction :: Int -> Int -> Int
+              ^arg0  ^arg1  ^res
+```
+```haskell
+myFunction :: Int -> (Int -> Int)
+              ^arg0  ^res
+```
+
+    > myPartiallyAppliedFunction = myFunction 1
+    > myPartiallyAppliedFunction 2
+    8
+
+### Pattern matching
 
 ```haskell
 xor :: Bool -> Bool -> Bool
-xor False False = False
 xor False True  = True
 xor True  False = True
-xor True  True  = False
+xor _     _     = False
 ```
 
 ```haskell
@@ -86,8 +84,9 @@ isNine i = if i == 9
   else False
 ```
 
-You must have an else
+You must have an `else`.
 
+Return types must match.
 
 ### Lists
 
@@ -98,7 +97,6 @@ listOfInts  = [1,2,3]
 concat :: [a] -> [a] -> [a]
 concat as bs = as ++ bs
 ```
-
 
 ### Recursion on lists
 
@@ -119,7 +117,7 @@ Recursively looping through a list and changing nothing.
 - Slack : #finn-haskell-workshop
 - Examples-folder
 - README.md
-- presentation/CheatSheet.pdf
+- presentation/summary.pdf
 - presentation/index.html
 
 
@@ -132,30 +130,41 @@ Recursively looping through a list and changing nothing.
 
 ### Unloading and Loading
 
+Unloading all modules:
+
     *Loaded Modules> :load
     Ok, no modules loaded.
     Prelude>
+
+Loading single module:
 
     Prelude> :load Part1
     Ok, one module loaded.
     *Part1>
 
+Reloading current modules:
+
+    *Part1> :reload
+    Ok, one module loaded.
+    *Part1>
 
 ### Evaluating values and types
 
     >1 + 1
     2
 
-    >:ttype 1
+    >:type 1
     1 :: Num a => a
 
 
 ### Exercise time :
 
 First shell
+
     stack repl ./src/Part1.hs
 
 Second shell
+
     ./runtests 1
 
 
@@ -165,7 +174,7 @@ Functions are values and can be passed as arguments to, and be returned from, ot
 
 ```haskell
 applyTwice :: (a -> a) -> a -> a
-applyTwice f x = f (f x)
+applyTwice    f           x =  f (f x)
 ```
 
 

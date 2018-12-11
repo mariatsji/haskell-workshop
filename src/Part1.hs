@@ -45,6 +45,7 @@ isEmpty = undefined
 -- e.g.
 --   capitalize "sjur" == "Sjur"
 --   capitalize "FREDRIK" == "FREDRIK"
--- String is just an alias for a list of Char, so you can pattern match
+-- String is just an alias for a list of Char, so you can pattern match.
+-- The slides have an example of list pattern matching.
 capitalize :: String -> String
 capitalize = undefined

@@ -32,16 +32,16 @@
 ## View the slides
 
     open presentation/index.html
-    
 
-## Cheat Sheet
 
-    open presentation/CheatSheet.pdf
+## Presentation summary
+
+    open presentation/summary.pdf
 
 
 ## Open `src/Part1.hs` in an editor
 
-Edit the code in `src/Part1.hs` and type 
+Edit the code in `src/Part1.hs` and type
 
     ./runtests 1
 
@@ -53,7 +53,7 @@ until Part 1 is green!
 Edit the code in `src/Part2.hs` and type
 
     ./runtests 2
-    
+
 until Part 2 is green!
 
 

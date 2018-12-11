@@ -11,4 +11,4 @@
 	cd presentation
 	brew cask install mactex
 	(restart shell)
-	pandoc index.html -o CheatSheet.pdf
+	pandoc index.html -o summary.pdf

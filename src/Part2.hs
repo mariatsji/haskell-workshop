@@ -34,6 +34,7 @@ add1WithMap :: [Int] -> [Int]
 add1WithMap = undefined
 
 -- use myMap above (or just map if you couldn't figure myMap out..)
+-- hint: there's a function called `negate`
 negateWithMap :: [Int] -> [Int]
 negateWithMap = undefined
 
