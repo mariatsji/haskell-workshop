@@ -30,24 +30,6 @@ allTrueUsingFoldr = undefined
 anyTrueUsingFoldr :: [Bool] -> Bool
 anyTrueUsingFoldr = undefined
 
--- sum Ints in a list
--- e.g.
---   mySum [] == 0
---   mySum [1,2,3] == 6
--- let's do this one a little differently.
--- use a tail recursive helper function (we've named it "loop")
-mySum :: [Int] -> Int
-mySum =
-  let loop :: Int -> [Int] -> Int
-      loop = undefined
-  in  loop undefined
-
--- count elements in a list
--- e.g. myLength [4,5,6] == 3
--- use the same technique as `mySum`.
-myLength :: [a] -> Int
-myLength = undefined
-
 -- write a generalized function for folding in a left associative way
 -- e.g. myFoldl f 1 [2,3,4] == f (f (f 1 2) 3) 4
 myFoldl :: (b -> a -> b) -> b -> [a] -> b

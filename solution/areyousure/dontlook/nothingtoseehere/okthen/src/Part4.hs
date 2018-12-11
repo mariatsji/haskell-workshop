@@ -18,19 +18,6 @@ allTrueUsingFoldr as = foldr (&&) True as
 anyTrueUsingFoldr :: [Bool] -> Bool
 anyTrueUsingFoldr as = foldr (||) False as
 
-mySum :: [Int] -> Int
-mySum as =
-  let loop :: Int -> [Int] -> Int
-      loop acc []       = acc
-      loop acc (x : xs) = loop (acc + x) xs
-  in  loop 0 as
-
-myLength :: [a] -> Int
-myLength as = loop 0 as
- where
-  loop acc []       = acc
-  loop acc (x : xs) = loop (acc + 1) xs
-
 myFoldl :: (b -> a -> b) -> b -> [a] -> b
 myFoldl _ b []       = b
 myFoldl f b (a : as) = myFoldl f (f b a) as
