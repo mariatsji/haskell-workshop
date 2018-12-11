@@ -22,7 +22,6 @@ isSeven = undefined
 -- e.g. helloWorld "Jens" == "Hello, Jens!"
 helloWorld :: String -> String
 helloWorld = undefined
--- String is just an alias for a list of Char
 
 -- the standard list in haskell is a singly linked list.
 -- a single colon (:) connects a head element to the remaining list.
@@ -37,7 +36,7 @@ helloWorld = undefined
 -- e.g.
 --   isEmpty [] == True
 --   isEmpty [1] == False
-isEmpty :: [a] -> Bool
+isEmpty :: [Int] -> Bool
 isEmpty = undefined
 -- this function already exists, and is called `null`.
 
@@ -46,5 +45,6 @@ isEmpty = undefined
 -- e.g.
 --   capitalize "sjur" == "Sjur"
 --   capitalize "FREDRIK" == "FREDRIK"
+-- String is just an alias for a list of Char, so you can pattern match
 capitalize :: String -> String
 capitalize = undefined

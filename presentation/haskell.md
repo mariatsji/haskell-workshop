@@ -7,6 +7,12 @@ author: FINN.no
 ![](./images/haskell-workshop.png)
 
 
+### Agenda
+
+- 3 hours
+- 7 parts of 15-30 minutes
+- Solutions walkthrough for those who want
+
 
 ### Haskell
 
@@ -14,6 +20,107 @@ author: FINN.no
 - Statically Typed
 - Lazy
 - GHC: Glasgow Haskell Compiler
+
+
+### Stack
+
+- A Build tool
+- Runs compiler
+- Runs tests
+- Manages dependencies
+- ..
+- See README.md for how to install
+
+
+### Curried signatures
+
+```haskell
+myFunction :: Int -> Int -> Int
+              ^arg0  ^arg1  ^res
+```
+```haskell
+myFunction :: Int -> (Int -> Int)
+              ^arg0  ^res
+```
+
+    >:t myFunction 1
+    myFunction 1 :: Int -> Int
+
+
+
+### Create a function
+
+```haskell
+myFunction :: Int -> Int -> Int
+myFunction    a      b   =  (a + 1) * b ^ 2
+```
+
+Applying the function
+
+    > myFunction 1 2
+    8
+
+
+### Create a function 2
+
+```haskell
+xor :: Bool -> Bool -> Bool
+xor False False = False
+xor False True  = True
+xor True  False = True
+xor True  True  = False
+```
+
+```haskell
+xor :: Bool -> Bool -> Bool
+xor a b = a /= b
+```
+
+
+### Everything is an expression
+
+```haskell
+isNine :: Int -> Bool
+isNine i = if i == 9
+  then True
+  else False
+```
+
+You must have an else
+
+
+### Lists
+
+```haskell
+listOfInts :: [Int]
+listOfInts  = [1,2,3]
+
+concat :: [a] -> [a] -> [a]
+concat as bs = as ++ bs
+```
+
+
+### Recursion on lists
+
+There are no for/while loops in haskell.
+
+```haskell
+loopThrough :: [a] -> [a]
+loopThrough []       = []
+loopThrough (a : as) = a : loopThrough as
+```
+
+Recursively looping through a list and changing nothing.
+
+
+### Tips
+
+- Indentation matters
+- Slack : #finn-haskell-workshop
+- Examples-folder
+- README.md
+- presentation/CheatSheet.pdf
+- presentation/index.html
 
 
 ### REPL
@@ -42,84 +149,13 @@ author: FINN.no
     >:t 1
     1 :: Num a => a
 
-### create a function
-
-```haskell
-isPrime :: Int -> Bool
-isPrime 0 = False
-isPrime 1 = False
-isPrime 2 = True
-isPrime 3 = True
-isPrime 4 = False
-isPrime 5 = True
-isPrime 6 = False
-isPrime 7 = True
-```
-
-
-### Curried signatures
-
-```haskell
-myFunction :: Int -> Int -> Int
-              ^arg0  ^arg1  ^res
-```
-```haskell
-myFunction :: Int -> (Int -> Int)
-              ^arg0  ^res
-```
-
-    >:t myFunction 1
-    myFunction 1 :: Int -> Int
-
-
-
-### create a function 2
-
-```haskell
-myFunction :: Int -> Int -> Int
-myFunction    a      b   =  (a + 1) * b ^ 2
-```
-
-Applying the function
-
-    > myFunction 1 2
-    8
-
-### Everything is an expression
-
-```haskell
-isNine :: Int -> Bool
-isNine i = if i == 9
-  then True
-  else False
-```
-
-You must have an else
-
-
-### lists
-
-```haskell
-listOfInts :: [Int]
-listOfInts  = [1,2,3]
-
-concat :: [a] -> [a] -> [a]
-concat as bs = as ++ bs
-```
-
-
-### Tips
-
-- Indentation matters
-- Slack : #finn-haskell-workshop
-- Examples-folder
-- README.md
-- presentation/CheatSheet.pdf
-- presentation/index.html
-
 
 ### Exercise time :
 
+First shell
+    stack repl ./src/Part1.hs
+
+Second shell
     ./runtests 1
 
 
@@ -132,17 +168,6 @@ applyTwice :: (a -> a) -> a -> a
 applyTwice f x = f (f x)
 ```
 
-### Recursion on lists
-
-There are no for/while loops in haskell.
-
-```haskell
-loopThrough :: [a] -> [a]
-loopThrough []       = []
-loopThrough (a : as) = a : loopThrough as
-```
-
-Recursively looping through a list and changing nothing.
 
 ### Infix functions 1
 You can turn an infix function into a prefix function by wrapping it in parantheses.
