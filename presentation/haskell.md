@@ -114,7 +114,7 @@ Recursively looping through a list and changing nothing.
 ### Tips
 
 - Indentation matters
-- Slack : #finn-haskell-workshop
+- Slack: #finn-haskell-workshop
 - Examples-folder
 - README.md
 - presentation/summary.pdf
@@ -157,7 +157,7 @@ Reloading current modules:
     1 :: Num a => a
 
 
-### Exercise time :
+### Exercise time:
 
 First shell
 
@@ -209,12 +209,12 @@ cylinderVolume diameter height =
 Variables can not be reassigned.
 
 
-### Exercise time :
+### Exercise time:
 
     ./runtests 2
 
 
-### Exercise time :
+### Exercise time:
 
     ./runtests 3
 
@@ -241,12 +241,28 @@ Use an underscore to tell the compiler (and yourself) that an argument is intent
 ```
 
 
-### Exercise time :
+### Exercise time:
 
     ./runtests 4
 
 
-### Exercise time :
+### List data constructor
+
+`(:)` is a function.
+
+    > :type (:)
+    (:) :: a -> [a] -> [a]
+
+### Tuples
+
+Product of two types (which may be different)
+
+```haskell
+(,) 'a' 1 == ('a', 1)
+```
+
+
+### Exercise time:
 
     ./runtests 5
 

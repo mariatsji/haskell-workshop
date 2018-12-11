@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Tips</h3>
 <ul>
 <li>Indentation matters</li>
-<li>Slack : #finn-haskell-workshop</li>
+<li>Slack: #finn-haskell-workshop</li>
 <li>Examples-folder</li>
 <li>README.md</li>
 <li>presentation/summary.pdf</li>
@@ -225,7 +225,7 @@ Ok, one module loaded.
 1 :: Num a =&gt; a</code></pre>
 </section>
 <section id="exercise-time" class="slide level3">
-<h3>Exercise time :</h3>
+<h3>Exercise time:</h3>
 <p>First shell</p>
 <pre><code>stack repl ./src/Part1.hs</code></pre>
 <p>Second shell</p>
@@ -260,11 +260,11 @@ Ok, one module loaded.
 <p>Variables can not be reassigned.</p>
 </section>
 <section id="exercise-time-1" class="slide level3">
-<h3>Exercise time :</h3>
+<h3>Exercise time:</h3>
 <pre><code>./runtests 2</code></pre>
 </section>
 <section id="exercise-time-2" class="slide level3">
-<h3>Exercise time :</h3>
+<h3>Exercise time:</h3>
 <pre><code>./runtests 3</code></pre>
 </section>
 <section id="anonymous-functions-lambda" class="slide level3">
@@ -279,21 +279,32 @@ Ok, one module loaded.
 <div class="sourceCode" id="cb26"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb26-1" title="1">\a _ c <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="fu">*</span> a <span class="fu">+</span> c</a></code></pre></div>
 </section>
 <section id="exercise-time-3" class="slide level3">
-<h3>Exercise time :</h3>
+<h3>Exercise time:</h3>
 <pre><code>./runtests 4</code></pre>
 </section>
+<section id="list-data-constructor" class="slide level3">
+<h3>List data constructor</h3>
+<p><code>(:)</code> is a function.</p>
+<pre><code>&gt; :type (:)
+(:) :: a -&gt; [a] -&gt; [a]</code></pre>
+</section>
+<section id="tuples" class="slide level3">
+<h3>Tuples</h3>
+<p>Product of two types (which may be different)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb29-1" title="1">(,) <span class="ch">&#39;a&#39;</span> <span class="dv">1</span> <span class="fu">==</span> (<span class="ch">&#39;a&#39;</span>, <span class="dv">1</span>)</a></code></pre></div>
+</section>
 <section id="exercise-time-4" class="slide level3">
-<h3>Exercise time :</h3>
+<h3>Exercise time:</h3>
 <pre><code>./runtests 5</code></pre>
 </section>
 <section id="creating-a-type" class="slide level3">
 <h3>Creating a type</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">data</span> <span class="dt">TrafficLight</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Yellow</span> <span class="fu">|</span> <span class="dt">Green</span></a>
-<a class="sourceLine" id="cb29-2" title="2"></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="ot">safe ::</span> <span class="dt">TrafficLight</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb29-4" title="4">safe <span class="dt">Red</span>    <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb29-5" title="5">safe <span class="dt">Yellow</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb29-6" title="6">safe <span class="dt">Green</span>  <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">data</span> <span class="dt">TrafficLight</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Yellow</span> <span class="fu">|</span> <span class="dt">Green</span></a>
+<a class="sourceLine" id="cb31-2" title="2"></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="ot">safe ::</span> <span class="dt">TrafficLight</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb31-4" title="4">safe <span class="dt">Red</span>    <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb31-5" title="5">safe <span class="dt">Yellow</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb31-6" title="6">safe <span class="dt">Green</span>  <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
 </section>
 <section id="part-6" class="slide level3">
 <h3>Part 6</h3>
