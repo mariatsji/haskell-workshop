@@ -20,6 +20,7 @@ doubleEveryElement = undefined
 -- ok, writing a new recursive function every time is annoying
 -- let's write a generalized function for applying a transformation
 -- to every element of a list
+-- Hint : The slide on Higher Order Functions
 myMap :: (a -> b) -> [a] -> [b]
 myMap = undefined
 -- this function already exists in haskell, and is named `map`
@@ -28,6 +29,7 @@ myMap = undefined
 
 -- let's use our map function to reimplement the previous three functions
 -- how concise can you write them?
+-- Hint : The slide on Infix function
 add1WithMap :: [Int] -> [Int]
 add1WithMap = undefined
 

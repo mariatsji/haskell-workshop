@@ -2,7 +2,7 @@ module Part1 where
 
 import           Data.Char                      ( toUpper )
 
--- return the greater of two natural numbers
+-- return the greater of two Ints
 myMax :: Int -> Int -> Int
 myMax = undefined
 -- this function already exists as `max` in haskell.
