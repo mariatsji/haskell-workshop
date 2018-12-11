@@ -3,6 +3,7 @@ module Part2 where
 -- add 1 to every element in a list of ints
 -- e.g. (add1ToEveryElement [1,2,3]) == [2,3,4]
 -- use a recursive function
+-- hint: see the slide on list recursion
 add1ToEveryElement :: [Int] -> [Int]
 add1ToEveryElement = undefined
 
@@ -24,8 +25,6 @@ doubleEveryElement = undefined
 myMap :: (a -> b) -> [a] -> [b]
 myMap = undefined
 -- this function already exists in haskell, and is named `map`
--- (there is also a more general `fmap` which can be used for
--- more than just lists. For lists it is the same as `map`.)
 
 -- let's use our map function to reimplement the previous three functions
 -- how concise can you write them?
@@ -47,4 +46,3 @@ doubleEveryElementWithMap = undefined
 -- hint: map won't cut it
 doubleEveryOtherElement :: [Int] -> [Int]
 doubleEveryOtherElement = undefined
-
