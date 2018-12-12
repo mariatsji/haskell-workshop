@@ -95,8 +95,8 @@ Return types must match.
 listOfInts :: [Int]
 listOfInts  = [1,2,3]
 
-concat :: [a] -> [a] -> [a]
-concat as bs = as ++ bs
+append :: [a] -> [a] -> [a]
+append as bs = as ++ bs
 ```
 
 ### Recursion on lists
