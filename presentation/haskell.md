@@ -264,6 +264,42 @@ Second shell
 
     ./runtests 4
 
+### Folds 1
+
+#### Right fold
+```haskell
+1 + (2 + (3 + b))
+```
+
+#### Left fold
+```haskell
+((b + 1) + 2) + 3
+```
+
+### Folds 2
+
+#### Right fold
+```haskell
+1 / (2 / (3 / b))
+```
+
+#### Left fold
+```haskell
+((b / 1) / 2) / 3
+```
+
+
+### Folds 3
+
+#### Right fold
+```haskell
+False && (True && (True && b))
+```
+
+#### Left fold
+```haskell
+((b && False) && True) && True
+```
 
 ### List data constructor
 

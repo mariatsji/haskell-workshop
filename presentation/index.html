@@ -291,6 +291,27 @@ Ok, one module loaded.
 <p>Second shell</p>
 <pre><code>./runtests 4</code></pre>
 </section>
+<section id="folds-1" class="slide level3">
+<h3>Folds 1</h3>
+<h4 id="right-fold">Right fold</h4>
+<div class="sourceCode" id="cb31"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb31-1" title="1"><span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (<span class="dv">3</span> <span class="fu">+</span> b))</a></code></pre></div>
+<h4 id="left-fold">Left fold</h4>
+<div class="sourceCode" id="cb32"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb32-1" title="1">((b <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span></a></code></pre></div>
+</section>
+<section id="folds-2" class="slide level3">
+<h3>Folds 2</h3>
+<h4 id="right-fold-1">Right fold</h4>
+<div class="sourceCode" id="cb33"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb33-1" title="1"><span class="dv">1</span> <span class="fu">/</span> (<span class="dv">2</span> <span class="fu">/</span> (<span class="dv">3</span> <span class="fu">/</span> b))</a></code></pre></div>
+<h4 id="left-fold-1">Left fold</h4>
+<div class="sourceCode" id="cb34"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb34-1" title="1">((b <span class="fu">/</span> <span class="dv">1</span>) <span class="fu">/</span> <span class="dv">2</span>) <span class="fu">/</span> <span class="dv">3</span></a></code></pre></div>
+</section>
+<section id="folds-3" class="slide level3">
+<h3>Folds 3</h3>
+<h4 id="right-fold-2">Right fold</h4>
+<div class="sourceCode" id="cb35"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb35-1" title="1"><span class="dt">False</span> <span class="fu">&amp;&amp;</span> (<span class="dt">True</span> <span class="fu">&amp;&amp;</span> (<span class="dt">True</span> <span class="fu">&amp;&amp;</span> b))</a></code></pre></div>
+<h4 id="left-fold-2">Left fold</h4>
+<div class="sourceCode" id="cb36"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb36-1" title="1">((b <span class="fu">&amp;&amp;</span> <span class="dt">False</span>) <span class="fu">&amp;&amp;</span> <span class="dt">True</span>) <span class="fu">&amp;&amp;</span> <span class="dt">True</span></a></code></pre></div>
+</section>
 <section id="list-data-constructor" class="slide level3">
 <h3>List data constructor</h3>
 <p><code>(:)</code> is a function.</p>
@@ -300,7 +321,7 @@ Ok, one module loaded.
 <section id="tuples" class="slide level3">
 <h3>Tuples</h3>
 <p>Product of two types (which may be different)</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb32-1" title="1">(,) <span class="ch">&#39;a&#39;</span> <span class="dv">1</span> <span class="fu">==</span> (<span class="ch">&#39;a&#39;</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb38-1" title="1">(,) <span class="ch">&#39;a&#39;</span> <span class="dv">1</span> <span class="fu">==</span> (<span class="ch">&#39;a&#39;</span>, <span class="dv">1</span>)</a></code></pre></div>
 </section>
 <section id="exercise-time-4" class="slide level3">
 <h3>Exercise time:</h3>
@@ -311,12 +332,12 @@ Ok, one module loaded.
 </section>
 <section id="creating-a-type" class="slide level3">
 <h3>Creating a type</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">data</span> <span class="dt">TrafficLight</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Yellow</span> <span class="fu">|</span> <span class="dt">Green</span></a>
-<a class="sourceLine" id="cb35-2" title="2"></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="ot">safe ::</span> <span class="dt">TrafficLight</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb35-4" title="4">safe <span class="dt">Red</span>    <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb35-5" title="5">safe <span class="dt">Yellow</span> <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb35-6" title="6">safe <span class="dt">Green</span>  <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">data</span> <span class="dt">TrafficLight</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Yellow</span> <span class="fu">|</span> <span class="dt">Green</span></a>
+<a class="sourceLine" id="cb41-2" title="2"></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="ot">safe ::</span> <span class="dt">TrafficLight</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb41-4" title="4">safe <span class="dt">Red</span>    <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb41-5" title="5">safe <span class="dt">Yellow</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb41-6" title="6">safe <span class="dt">Green</span>  <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
 </section>
 <section id="part-6" class="slide level3">
 <h3>Part 6</h3>
