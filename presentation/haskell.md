@@ -5,6 +5,7 @@ author: FINN.no
 
 
 ![](./images/haskell-workshop.png)
+[https://github.com/mariatsji/haskell-workshop](https://github.com/mariatsji/haskell-workshop)
 
 
 ### Agenda
