@@ -211,10 +211,22 @@ Variables can not be reassigned.
 
 ### Exercise time:
 
+First shell
+
+    stack repl ./src/Part2.hs
+
+Second shell
+
     ./runtests 2
 
 
 ### Exercise time:
+
+First shell
+
+    stack repl ./src/Part3.hs
+
+Second shell
 
     ./runtests 3
 
@@ -243,6 +255,12 @@ Use an underscore to tell the compiler (and yourself) that an argument is intent
 
 ### Exercise time:
 
+First shell
+
+    stack repl ./src/Part4.hs
+
+Second shell
+
     ./runtests 4
 
 
@@ -263,6 +281,12 @@ Product of two types (which may be different)
 
 
 ### Exercise time:
+
+First shell
+
+    stack repl ./src/Part5.hs
+
+Second shell
 
     ./runtests 5
 
