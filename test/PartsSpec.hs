@@ -378,18 +378,18 @@ refactorSpec = describe "Part6 - refactor" $ do
     price `shouldBe` (Just 1100)
 
 takeSpec :: Spec
-takeSpec = describe "myTakeUntil" $ do
-  it "takes until a predicate becomes false for (<3) [1,2,3,4,5] " $ do
-    myTakeUntil (<3) [1 .. 5] `shouldBe` [1,2]
+takeSpec = describe "myTakeWhile" $ do
+  it "takes While a predicate becomes false for (<3) [1,2,3,4,5] " $ do
+    myTakeWhile (<3) [1 .. 5] `shouldBe` [1,2]
   it "takes nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
-    myTakeUntil (>3) [1 .. 5] `shouldBe` []
+    myTakeWhile (>3) [1 .. 5] `shouldBe` []
 
 dropSpec :: Spec
-dropSpec = describe "myDropUntil" $ do
-  it "drops until a predicate becomes false for (<3) [1,2,3,4,5]" $ do
-    myDropUntil (<3) [1 .. 5] `shouldBe` [3,4,5]
+dropSpec = describe "myDropWhile" $ do
+  it "drops While a predicate becomes false for (<3) [1,2,3,4,5]" $ do
+    myDropWhile (<3) [1 .. 5] `shouldBe` [3,4,5]
   it "drops nothing if the predicate is allready false for (>3) [1,2,3,4,5]" $ do
-    myDropUntil (>3) [1 .. 5] `shouldBe` [1 .. 5]
+    myDropWhile (>3) [1 .. 5] `shouldBe` [1 .. 5]
 
 compressorSpec :: Spec
 compressorSpec = describe "compress String" $ do
